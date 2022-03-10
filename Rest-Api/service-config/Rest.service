@@ -1,0 +1,10 @@
+[Unit]
+Description=My Rest Project
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/root/create_venv.sh
+
+[Install]
+WantedBy=multi-user.target
