@@ -1,0 +1,31 @@
+---
+- name: Allow related and established connections
+  iptables:
+    chain: INPUT
+    ctstate: ESTABLISHED,RELATED
+    jump: ACCEPT
+
+- name: Allow input package on TCP port 18080
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 18080
+    jump: ACCEPT
+
+- name: Allow input package on TCP port 22 (SSH)
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 22
+    jump: ACCEPT
+
+- name: Allow input package on ICMP
+  iptables:
+    chain: INPUT
+    protocol: icmp
+    jump: ACCEPT
+
+- name: Drop all other packages
+  iptables:
+    chain: INPUT
+    jump: DROP
