@@ -1,5 +1,0 @@
----
-- name: SSH Hardening
-  copy:
-    src: ./roles/ssh-hardening/files/ssh_hardening_config
-    dest: /etc/ssh/sshd_config

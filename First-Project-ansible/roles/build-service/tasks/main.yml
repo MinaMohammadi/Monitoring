@@ -1,5 +1,0 @@
----
-- name: Copy the "Rest.service" file to the remote server
-  copy:
-    src: ./roles/build-service/files/Rest.service
-    dest: /lib/systemd/system/
