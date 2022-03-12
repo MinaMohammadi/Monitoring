@@ -1,0 +1,6 @@
+---
+- name: Clone your code from the git and download the basic libraries And complete the basic settings for your code.
+  import_tasks: basic-code-work
+
+- name: Enter your code inside systemd.
+  import_tasks: build-service
