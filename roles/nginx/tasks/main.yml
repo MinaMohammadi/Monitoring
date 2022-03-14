@@ -1,0 +1,6 @@
+---
+- name: wordpress installation
+  import_tasks: wordpress
+
+- name: nginx install and config
+  import_tasks: nginx
