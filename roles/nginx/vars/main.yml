@@ -1,6 +1,8 @@
 ---
+# ssh
 ansible_ssh_user: ubuntu
 
+# nginx
 root_domain_name: "bukhara-chkh.ir"
 nginx_conf_files:
   - "api.conf"
@@ -9,6 +11,7 @@ nginx_conf_files:
   - "default.conf"
   - "root.conf"
 
+# certificate paths
 letsencrypt_dir: "/etc/letsencrypt/live/"
 wildcard_cert_path: "{{ letsencrypt_dir }}{{ root_domain_name }}/cert.pem"
 wildcard_cert_path: "{{ letsencrypt_dir }}{{ root_domain_name }}/privkey.pem"
@@ -17,3 +20,22 @@ pb_rest_api_addr: http://192.168.0.129:18080/
 kibana_addr: http://192.168.0.129:18080/
 grafana_addr: http://192.168.0.129:18080/
 prometheus_addr: http://192.168.0.129:18080/
+
+# wordpress
+# wordpress database settings
+wp_db_name: wordpress
+wp_db_user: user
+wp_db_password: pass
+wp_db_host: 10.0.0.1
+mysql_port: 3306
+mysql_root_password: root
+
+auto_up_disable: true
+
+# domain_name: www.wordpress.com
+
+# core update level
+# true  = Development, minor, and major updates are all enabled
+# false = Development, minor, and major updates are all disabled
+# minor = Minor updates are enabled, development, and major updates are disabled
+core_update_level: true

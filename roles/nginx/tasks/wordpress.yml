@@ -1,0 +1,70 @@
+- name: Install requirements
+  apt:
+    name:
+      - nginx
+      - php
+      - php
+      - php-mysql
+      - php-fpm
+      - php-curl
+      - php-gd
+      - php-intl
+      - php-mbstring
+      - php-soap
+      - php-xml
+      - php-xmlrpc
+      - php-zip
+      - mariadb-server
+      - mariadb-client
+      # - python3-mysqldb
+
+# - name: Create mysql database for wordpress
+#   mysql_db:
+#     login_user: "{{ wp_db_user }}"
+#     login_password: "{{ wp_db_password }}"
+#     login_host: "{{ wp_db_host }}"
+#     login_port: 3306
+#     name: "{{ wp_db_name }}"
+#     state: present
+
+- name: Create webroot
+  file:
+    state: directory
+    path: /var/www/{{ root_domain_name }}
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Check if WordPress directory exists in /var/www/{{ root_domain_name }}
+  stat: path=/var/www/{{ root_domain_name }}/wordpress
+  register: check_path
+
+- name: Download WordPress
+  get_url:
+    url: http://wordpress.org/latest.tar.gz
+    dest: /tmp/wordpress.tar.gz
+  when: not check_path.stat.exists
+
+- name: Extract WordPress
+  unarchive:
+    src: /tmp/wordpress.tar.gz
+    dest: /tmp
+    owner: www-data
+    group: www-data
+    copy: no
+  when: not check_path.stat.exists
+
+- name: Move WordPress install files
+  command: mv /tmp/wordpress /var/www/{{ root_domain_name }}/wordpress
+  when: not check_path.stat.exists
+
+- name: Fetch random salts for WordPress config
+  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
+  register: "wp_salt"
+  become: no
+
+- name: Add wp-config
+  template:
+    src: wordpress-config/wp-config.php
+    dest: /var/www/{{ root_domain_name }}/wordpress/wp-config.php
+  notify: restart nginx
