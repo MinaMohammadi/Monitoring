@@ -27,7 +27,7 @@
 
 - name: Copy Nginx Config Files
   template:
-    src: config/{{ item }}
+    src: nginx-config/{{ item }}
     dest: /etc/nginx/sites-enabled/{{ item }}
   loop: "{{ nginx_conf_files }}"
   notify: reload nginx
