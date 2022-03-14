@@ -1,0 +1,19 @@
+---
+ansible_ssh_user: ubuntu
+
+root_domain_name: "bukhara-chkh.ir"
+nginx_conf_files:
+  - "api.conf"
+  - "wordpress.conf"
+  - "monitor.conf"
+  - "default.conf"
+  - "root.conf"
+
+letsencrypt_dir: "/etc/letsencrypt/live/"
+wildcard_cert_path: "{{ letsencrypt_dir }}{{ root_domain_name }}/cert.pem"
+wildcard_cert_path: "{{ letsencrypt_dir }}{{ root_domain_name }}/privkey.pem"
+
+pb_rest_api_addr: http://192.168.0.129:18080/
+kibana_addr: http://192.168.0.129:18080/
+grafana_addr: http://192.168.0.129:18080/
+prometheus_addr: http://192.168.0.129:18080/

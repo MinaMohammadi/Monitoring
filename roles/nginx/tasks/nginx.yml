@@ -1,0 +1,40 @@
+---
+- name: Update
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install Required Packages
+  apt:
+    name:
+      - nginx
+    state: latest
+
+- name: Copy Letsencrypt Certificate Files
+  copy:
+    src: letsencrypt/
+    dest: "{{ letsencrypt_dir }}"
+    directory_mode:
+    owner: root
+    group: root
+    mode: 700
+
+- name: Remove Default Config File
+  file:
+    path: "/etc/nginx/sites-enabled/default"
+    state: absent
+  notify: reload nginx
+
+- name: Copy Nginx Config Files
+  template:
+    src: config/{{ item }}
+    dest: /etc/nginx/sites-enabled/{{ item }}
+  loop: "{{ nginx_conf_files }}"
+  notify: reload nginx
+
+- name: Copy Static Files
+  copy:
+    src: static/
+    dest: /var/www/
+    directory_mode:
+  notify: reload nginx
