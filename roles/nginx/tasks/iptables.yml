@@ -2,6 +2,7 @@
 - name: install iptables-persistent
   apt:
     name: iptables-persistent
+    update_cache: yes
 
 - name: Copy iptables template rules over to /etc/iptables
   template:

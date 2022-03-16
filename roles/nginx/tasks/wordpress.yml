@@ -16,6 +16,7 @@
       - php-zip
       - mariadb-server
       - mariadb-client
+  update_cache: yes
 
 - name: Create webroot
   file:

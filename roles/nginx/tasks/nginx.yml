@@ -1,14 +1,10 @@
 ---
-- name: Update
-  apt:
-    update_cache: yes
-    cache_valid_time: 3600
-
 - name: Install Required Packages
   apt:
     name:
       - nginx
     state: latest
+    update_cache: yes
 
 - name: Copy Letsencrypt Certificate Files
   copy:
