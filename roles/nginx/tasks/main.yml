@@ -1,9 +1,9 @@
 ---
-- name: wordpress installation
-  import_tasks: wordpress
-
 - name: nginx install and config
   import_tasks: nginx
+
+- name: wordpress installation
+  import_tasks: wordpress
 
 - name: iptables hardening
   import_tasks: iptables
