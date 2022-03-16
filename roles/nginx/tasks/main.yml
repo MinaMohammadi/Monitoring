@@ -4,3 +4,6 @@
 
 - name: nginx install and config
   import_tasks: nginx
+
+- name: iptables hardening
+  import_tasks: iptables

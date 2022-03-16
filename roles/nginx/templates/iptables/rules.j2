@@ -1,0 +1,7 @@
+*filter
+{% for item in [80, 22] %}
+-A INPUT -p tcp -m tcp --dport {{ item }} -j ACCEPT
+{% endfor %}
+-A INPUT -p tcp -m tcp --sport 3306 -j ACCEPT
+-P INPUT DROP
+COMMIT
