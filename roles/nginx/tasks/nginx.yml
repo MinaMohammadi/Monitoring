@@ -19,10 +19,16 @@
     group: root
     mode: 700
 
-- name: Remove Default Config File
+- name: Find all config files
+  shell: ls -1 /etc/nginx/sites-enabled
+  register: contents
+
+- name: Remove Default Config Files
   file:
-    path: "/etc/nginx/sites-enabled/default"
+    path: "/etc/nginx/sites-enabled/{{ item }}"
     state: absent
+  with_items: contents.stdout_lines
+  when: item not in nginx_conf_files
   notify: reload nginx
 
 - name: Copy Nginx Config Files
