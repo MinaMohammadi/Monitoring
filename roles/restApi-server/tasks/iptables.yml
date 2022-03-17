@@ -1,0 +1,11 @@
+---
+- name: install iptables-persistent
+  apt:
+    name: iptables-persistent
+    update_cache: yes
+
+- name: copy iptables template rules over to /etc/iptables
+  template:
+    src: rest-iptables/iptables_rules.j2
+    dest: /etc/iptables/rules.v4
+  notify: restore iptables
