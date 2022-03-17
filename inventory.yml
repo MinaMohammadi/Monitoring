@@ -1,0 +1,5 @@
+all:
+  children:
+    RestApi:
+      hosts:
+        rest-server
