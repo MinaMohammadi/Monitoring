@@ -1,0 +1,6 @@
+---
+- name: Configure nginx  with Ansible
+  hosts: all
+  become: True
+  roles:
+    - nginx
