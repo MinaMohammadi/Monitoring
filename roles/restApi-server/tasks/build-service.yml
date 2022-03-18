@@ -1,7 +1,7 @@
 ---
 - name: Copy the "Rest.service" file to the remote server
   copy:
-    src: files/Rest.service
+    src: Rest.service
     dest: /lib/systemd/system/
   notify:
     - just force systemd to reread configs
