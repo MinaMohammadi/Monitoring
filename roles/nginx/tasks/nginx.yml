@@ -1,5 +1,5 @@
 ---
-- name: Install Required Packages
+- name: Nginx Install Required Packages
   apt:
     name:
       - nginx
@@ -31,12 +31,15 @@
   template:
     src: nginx-config/{{ item }}
     dest: /etc/nginx/sites-enabled/{{ item }}
+    owner: root
+    group: root
+    mode: 700
   loop: "{{ nginx_conf_files }}"
   notify: reload nginx
 
 - name: Copy Static Files
   copy:
     src: static/
-    dest: /var/www/
+    dest: /var/www/{{ root_domain_name }}/
     directory_mode:
   notify: reload nginx
