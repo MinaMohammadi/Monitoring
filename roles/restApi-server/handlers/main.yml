@@ -10,4 +10,4 @@
     enabled: yes
 
 - name: restore iptables
-  shell: "iptables-restore < /etc/iptables/rules.v4"
+  shell: "/sbin/iptables-restore < /etc/iptables/rules.v4"
