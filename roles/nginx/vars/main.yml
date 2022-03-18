@@ -11,10 +11,15 @@ nginx_conf_files:
   - "default.conf"
   - "root.conf"
 
+root_dn: "{{ root_domain_name }}"
+api_dn: "api.{{ root_domain_name }}"
+monitor_dn: "monitor.{{ root_domain_name }}"
+wordpress_dn: "wordpress.{{ root_domain_name }}"
+
 # certificate paths
-letsencrypt_dir: "/etc/letsencrypt/live/"
-wildcard_cert_path: "{{ letsencrypt_dir }}{{ root_domain_name }}/cert.pem"
-wildcard_cert_path: "{{ letsencrypt_dir }}{{ root_domain_name }}/privkey.pem"
+letsencrypt_dir: "/etc/letsencrypt/live/{{ root_domain_name }}"
+wildcard_cert_path: "{{ letsencrypt_dir }}/cert.pem"
+wildcard_key_path: "{{ letsencrypt_dir }}/privkey.pem"
 
 pb_rest_api_addr: http://192.168.0.129:18080/
 kibana_addr: http://192.168.0.129:18080/
