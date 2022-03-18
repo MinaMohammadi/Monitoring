@@ -19,11 +19,13 @@
   file:
     path: /var/log/restapi
     state: directory
+    mode: 0777
 
-- name: We create a directory to register logs
-  file:
-    path: /var/log/restapi/app.log
-    state: touch
-    owner: root
+- name: We create a file to register logs
+  copy:
+    content: ""
+    dest: /var/log/restapi/app.log
+    force: no
     group: root
+    owner: root
     mode: 0777
