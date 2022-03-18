@@ -1,6 +1,6 @@
 galaxy_info:
   author: Yegane Amirjani
-  description: Rest Api ansible for Bokhara team
+  description: ssh hardening ansible for Bokhara team
   company: Bokhara
 
   license: MIT
