@@ -1,6 +1,5 @@
 ---
-- name: Configure nginx  with Ansible
-  hosts: all
+- hosts: webserver
   become: True
   roles:
     - nginx
