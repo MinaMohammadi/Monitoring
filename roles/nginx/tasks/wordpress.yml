@@ -49,11 +49,6 @@
   command: mv /tmp/wordpress /var/www/{{ root_domain_name }}/wordpress
   when: not wordpress_static.stat.exists
 
-- name: Fetch random salts for WordPress config
-  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
-  register: "wp_salt"
-  become: no
-
 - name: Add wp-config
   template:
     src: wordpress-config/wp-config.php
