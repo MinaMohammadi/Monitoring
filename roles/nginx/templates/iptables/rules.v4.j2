@@ -4,5 +4,5 @@
 {% endfor %}
 -A INPUT -p tcp --sport 3306 -j ACCEPT
 -A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables block: " --log-level 7
--P INPUT DROP
+# -P INPUT DROP
 COMMIT
