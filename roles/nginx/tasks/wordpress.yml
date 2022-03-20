@@ -1,0 +1,56 @@
+---
+- name: Wordpress Install Required Packages
+  apt:
+    name:
+      - php
+      - php
+      - php-mysql
+      - php-fpm
+      - php-curl
+      - php-gd
+      - php-intl
+      - php-mbstring
+      - php-soap
+      - php-xml
+      - php-xmlrpc
+      - php-zip
+      - mariadb-server
+      - mariadb-client
+    update_cache: yes
+
+- name: Create webroot
+  file:
+    state: directory
+    path: /var/www/{{ root_domain_name }}
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Check if WordPress directory exists in /var/www/{{ root_domain_name }}
+  stat: path=/var/www/{{ root_domain_name }}/wordpress
+  register: wordpress_static
+
+- name: Download WordPress
+  get_url:
+    url: http://wordpress.org/latest.tar.gz
+    dest: /tmp/wordpress.tar.gz
+  when: not wordpress_static.stat.exists
+
+- name: Extract WordPress
+  unarchive:
+    src: /tmp/wordpress.tar.gz
+    dest: /tmp
+    owner: www-data
+    group: www-data
+    copy: no
+  when: not wordpress_static.stat.exists
+
+- name: Move WordPress install files
+  command: mv /tmp/wordpress /var/www/{{ root_domain_name }}/wordpress
+  when: not wordpress_static.stat.exists
+
+- name: Add wp-config
+  template:
+    src: wordpress-config/wp-config.php
+    dest: /var/www/{{ root_domain_name }}/wordpress/wp-config.php
+  notify: reload nginx
