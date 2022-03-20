@@ -1,5 +1,4 @@
-all:
-  children:
-    RestApi:
-      hosts:
-        rest-server
+RestApi:
+  hosts: 130.185.121.125
+  vars:
+    ansible_ssh_user: root

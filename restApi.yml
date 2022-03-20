@@ -1,6 +1,6 @@
 ---
 - name: Configure Rest Api with Ansible
-  hosts: all
+  hosts: RestApi
   become: True
   roles:
    - restApi-server
