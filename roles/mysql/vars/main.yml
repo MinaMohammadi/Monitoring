@@ -1,0 +1,6 @@
+---
+backup_host: 192.168.30.4
+backup_user: root
+
+db_user: arvan
+db_password: arvan

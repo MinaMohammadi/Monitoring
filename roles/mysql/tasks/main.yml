@@ -1,0 +1,9 @@
+---
+- name: Mysql Install and Config
+  import_tasks: database.yml
+
+- name: Iptables Hardening
+  import_tasks: backup.yml
+
+- name: Iptables Hardening
+  import_tasks: iptables.yml
