@@ -1,0 +1,21 @@
+- name: Mysql Install Required Packages
+  apt:
+    name:
+      - mysql-server
+      - python3-mysqldb
+    update_cache: yes
+
+- name: Mysql Bind to any
+  lineinfile:
+    path: /etc/mysql/mysql.conf.d/mysqld.cnf
+    regexp: "^bind-address"
+    line: "bind-address            = 0.0.0.0"
+  notify: restart mysql
+
+- name: Create {{ db_user }} User
+  mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    priv: "*.*:ALL"
+    host: "%"
+    state: present
