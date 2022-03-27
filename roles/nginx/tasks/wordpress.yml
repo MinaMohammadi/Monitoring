@@ -14,22 +14,8 @@
       - php-xml
       - php-xmlrpc
       - php-zip
-      - mysql-server
-      - python3-mysqldb
+      - mysql-client
     update_cache: yes
-
-- name: Create mysql Database for WordPress
-  mysql_db:
-    name: "{{ wp_db_name }}"
-    state: present
-
-- name: Create User for WordPress Database
-  mysql_user:
-    name: "{{ wp_db_user }}"
-    password: "{{ wp_db_password }}"
-    priv: "{{ wp_db_name }}.*:ALL"
-    host: "%"
-    state: present
 
 - name: Create webroot
   file:

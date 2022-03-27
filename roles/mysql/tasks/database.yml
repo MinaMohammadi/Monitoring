@@ -12,10 +12,17 @@
     line: "bind-address            = 0.0.0.0"
   notify: restart mysql
 
-- name: Create {{ db_user }} User
+- name: Create All mysql Databases
+  mysql_db:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ dbs }}"
+
+- name: Create All User for mysql
   mysql_user:
-    name: "{{ db_user }}"
-    password: "{{ db_password }}"
-    priv: "*.*:ALL"
+    name: "{{ item.username }}"
+    password: "{{ item.password }}"
+    priv: "{{ item.db }}.*:ALL"
     host: "%"
     state: present
+  loop: "{{ db_users }}"
