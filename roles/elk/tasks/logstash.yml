@@ -1,0 +1,38 @@
+---
+- name: Download logstash.deb
+  get_url:
+    url: https://artifacts.elastic.co/downloads/logstash/logstash-{{ elk_version }}-amd64.deb
+    dest: /tmp/logstash.deb
+  when: "'logstash' not in ansible_facts.packages"
+
+- name: Install logstash.deb package
+  apt:
+    deb: /tmp/logstash.deb
+  when: "'logstash' not in ansible_facts.packages"
+  notify: restart logstash
+
+- name: Copy logstash pipelines.yml
+  template:
+    src: logstash/pipelines.yml
+    dest: /etc/logstash/pipelines.yml
+    owner: root
+    mode: 0744
+  notify: restart logstash
+
+- name: Copy logstash config logstash.yml
+  template:
+    src: logstash/logstash.yml
+    dest: /etc/logstash/logstash.yml
+    owner: root
+    mode: 0744
+  notify: restart logstash
+
+- name: Copy all pipeline configs
+  template:
+    src: "{{ item }}"
+    dest: "/etc/logstash/conf.d/{{ item | basename }}"
+    owner: root
+    mode: 0744
+  with_fileglob:
+    - "{{role_path}}/templates/logstash/conf.d/*"
+  notify: restart logstash
