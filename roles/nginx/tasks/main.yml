@@ -7,3 +7,12 @@
 
 - name: Iptables Hardening
   import_tasks: iptables.yml
+
+- name: Copy netplan Config File
+  copy:
+    src: netplan/50-cloud-init.yaml
+    dest: /etc/netplan/50-cloud-init.yaml
+    owner: root
+    group: root
+    mode: 0744
+  notify: apply netplan
