@@ -1,0 +1,20 @@
+---
+- name: "Get all installed packages"
+  package_facts:
+
+- name: Install required packages
+  apt:
+    name:
+      - apt-transport-https
+      - openssl
+      - default-jdk
+    update_cache: yes
+
+- name: Elasticsearch Install and Config
+  import_tasks: elasticsearch.yml
+
+- name: Kibana Install and Config
+  import_tasks: kibana.yml
+
+- name: Logstash Install and Config
+  import_tasks: logstash.yml
