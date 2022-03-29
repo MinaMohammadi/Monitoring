@@ -1,0 +1,20 @@
+---
+- name: Download kibana.deb
+  get_url:
+    url: https://artifacts.elastic.co/downloads/kibana/kibana-{{ elk_version }}-amd64.deb
+    dest: /tmp/kibana.deb
+  when: "'kibana' not in ansible_facts.packages"
+
+- name: Install kibana.deb package
+  apt:
+    deb: /tmp/kibana.deb
+  when: "'kibana' not in ansible_facts.packages"
+  notify: restart kibana
+
+- name: Copy kibana.yml
+  template:
+    src: kibana/kibana.yml
+    dest: /etc/kibana/kibana.yml
+    owner: root
+    mode: 0744
+  notify: restart kibana
