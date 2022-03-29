@@ -2,3 +2,8 @@ webserver:
   hosts: 188.121.110.247
   vars:
     ansible_ssh_user: ubuntu
+
+elk_server:
+  hosts: 185.235.43.181
+  vars:
+    ansible_ssh_user: ubuntu
