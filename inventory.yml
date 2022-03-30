@@ -2,3 +2,10 @@ webserver:
   hosts: 188.121.110.247
   vars:
     ansible_ssh_user: ubuntu
+
+filebeat_servers:
+  hosts:
+    185.235.40.80:
+    194.5.206.21:
+  vars:
+    ansible_ssh_user: ubuntu

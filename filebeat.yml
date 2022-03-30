@@ -1,0 +1,5 @@
+---
+- hosts: filebeat_servers
+  become: True
+  roles:
+    - filebeat-agent
