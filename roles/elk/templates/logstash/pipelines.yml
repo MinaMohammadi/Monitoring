@@ -2,7 +2,5 @@
 # For more information on multiple pipelines, see the documentation:
 #   https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html
 
-- pipeline.id: syslog-pipeline
-  path.config: "/etc/logstash/conf.d/sys-logstash.conf"
-- pipeline.id: authlog-pipeline
-  path.config: "/etc/logstash/conf.d/auth-logstash.conf"
+- pipeline.id: main
+  path.config: "/etc/logstash/conf.d/*"
