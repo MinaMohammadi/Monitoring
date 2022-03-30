@@ -2,3 +2,4 @@
 - import_playbook: restApi.yml
 
 - import_playbook: nginx.yml
+- import_playbook: gateway.yml
