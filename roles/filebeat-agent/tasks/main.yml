@@ -1,0 +1,25 @@
+---
+- name: Check filebeat installation
+  stat:
+    path: /etc/init.d/filebeat
+  register: filebeat_status
+
+- name: Download filebeat.deb
+  get_url:
+    url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{{ elk_version }}-amd64.deb
+    dest: /tmp/filebeat.deb
+  when: not filebeat_status.stat.exists
+
+- name: Install filebeat.deb package
+  apt:
+    deb: /tmp/filebeat.deb
+  when: not filebeat_status.stat.exists
+  notify: restart filebeat
+
+- name: Copy filebeat.yml
+  template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    mode: 0744
+  notify: restart filebeat
