@@ -28,7 +28,7 @@
 
 - name: Install Filebeat
   apt:
-   name: filebeat
+   name: filebeat=7.17.1
    update_cache: yes
 
 # Copy Config File
