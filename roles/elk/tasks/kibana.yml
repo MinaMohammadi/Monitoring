@@ -1,12 +1,9 @@
 ---
-# Installing Kibana
 
-- name: Install Filebeat
+- name: Install Kibana
   apt:
    name: kibana= {{elk_version}}
    update_cache: yes
-
-# Copy Config File
 
 - name: Copy kibana.yml
   template:
