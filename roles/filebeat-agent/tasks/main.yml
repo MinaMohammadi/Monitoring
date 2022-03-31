@@ -1,8 +1,4 @@
 ---
-# Installing Filebeat
-
-# Add Elasticsearch apt key
-
 - name: Add Elasticsearch apt key
   apt_key:
    url: "{{elasticsearch_repo_gpg_key_url}}"
@@ -15,11 +11,9 @@
    repo: "deb {{elasticsearch_repo_base_url}}"
    state: present
 
-# Installing Filebeat
-
 - name: Install Filebeat
   apt:
-   name: filebeat=7.17.1
+   name: filebeat={{elk_version}}
    update_cache: yes
 
 # Copy Config File
