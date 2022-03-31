@@ -2,7 +2,7 @@
 
 - name: Install Kibana
   apt:
-   name: kibana= {{elk_version}}
+   name: kibana={{elk_version}}
    update_cache: yes
 
 - name: Copy kibana.yml

@@ -12,7 +12,7 @@
 
 - name: Install Elasticsearch
   apt:
-   name: elasticsearch= {{elk_version}}
+   name: elasticsearch={{elk_version}}
    update_cache: yes
 
 
