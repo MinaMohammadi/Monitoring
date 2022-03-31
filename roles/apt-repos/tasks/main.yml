@@ -1,0 +1,5 @@
+---
+- name: Copy us repos to apt source.list
+  copy:
+    src: source.list
+    dest: /etc/apt/sources.list
