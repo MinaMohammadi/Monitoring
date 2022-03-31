@@ -11,3 +11,9 @@ gateway:
   vars:
     ansible_connection: local
     ansible_ssh_user: root
+
+filebeat_servers:
+  hosts:
+   188.121.108.206:
+  vars:
+    ansible_ssh_user: ubuntu
