@@ -4,8 +4,6 @@
    url: "{{elasticsearch_repo_gpg_key_url}}"
    state: present
 
-# Add the Elasticsearch apt repo. For versions 7 of the stack - use '7.x-prerelease':
-
 - name: Adding Elasticsearch repo
   apt_repository:
    repo: "deb {{elasticsearch_repo_base_url}}"
@@ -16,8 +14,6 @@
    name: filebeat={{elk_version}}
    update_cache: yes
 
-# Copy Config File
- 
 - name: Copy filebeat.yml
   template:
     src: filebeat.yml
