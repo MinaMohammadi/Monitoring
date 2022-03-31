@@ -2,3 +2,11 @@
 elk_version: 7.17.1
 es_url: "http://127.0.0.1:9100"
 server_ip_addr: 185.235.43.181
+
+## add elasticsearch repository
+
+#Download and install the Public Signing Key:
+elasticsearch_repo_gpg_key_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+
+#Save the repository definition to /etc/apt/sources.list.d
+elasticsearch_repo_base_url: "https://artifacts.elastic.co/packages/7.x/apt stable main"

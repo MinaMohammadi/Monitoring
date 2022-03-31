@@ -1,14 +1,27 @@
-- name: Download elasticsearch.deb
-  get_url:
-    url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{ elk_version }}-amd64.deb
-    dest: /tmp/elasticsearch.deb
-  when: "'elasticsearch' not in ansible_facts.packages"
+---
+# Installing Elasticsearch
 
-- name: Install elasticsearch.deb package
+# Add Elasticsearch apt key
+
+- name: Add Elasticsearch apt key
+  apt_key:
+   url: "{{elasticsearch_repo_gpg_key_url}}"
+   state: present
+
+# Add the Elasticsearch apt repo. For versions 7 of the stack - use '7.x-prerelease':
+
+- name: Adding Elasticsearch repo
+  apt_repository:
+   repo: "deb {{elasticsearch_repo_base_url}}"
+   state: present
+
+# Installing Elasticsearch
+
+- name: Install Filebeat
   apt:
-    deb: /tmp/elasticsearch.deb
-  when: "'elasticsearch' not in ansible_facts.packages"
-  notify: restart es
+   name: elasticsearch= {{elk_version}}
+   update_cache: yes
+
 
 - name: Copy Elasticsearch
   template:

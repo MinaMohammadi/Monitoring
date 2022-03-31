@@ -1,15 +1,8 @@
 ---
-- name: Download logstash.deb
-  get_url:
-    url: https://artifacts.elastic.co/downloads/logstash/logstash-{{ elk_version }}-amd64.deb
-    dest: /tmp/logstash.deb
-  when: "'logstash' not in ansible_facts.packages"
-
-- name: Install logstash.deb package
+- name: Install Logstash
   apt:
-    deb: /tmp/logstash.deb
-  when: "'logstash' not in ansible_facts.packages"
-  notify: restart logstash
+   name: logstash= {{elk_version}}
+   update_cache: yes
 
 - name: Copy logstash pipelines.yml
   template:
