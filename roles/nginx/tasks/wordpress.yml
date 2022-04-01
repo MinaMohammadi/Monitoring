@@ -14,8 +14,7 @@
       - php-xml
       - php-xmlrpc
       - php-zip
-      - mariadb-server
-      - mariadb-client
+      - mysql-client
     update_cache: yes
 
 - name: Create webroot

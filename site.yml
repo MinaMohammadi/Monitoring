@@ -1,5 +1,7 @@
 ---
 - import_playbook: restApi.yml
 - import_playbook: nginx.yml
+- import_playbook: database.yml
 - import_playbook: gateway.yml
 - import_playbook: filebeat.yml
+
