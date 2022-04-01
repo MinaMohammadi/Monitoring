@@ -1,9 +1,9 @@
 ---
-- name: Nginx Install and Config
-  import_tasks: nginx.yml
+- name: Mysql Install and Config
+  import_tasks: database.yml
 
-- name: Wordpress Install and Config
-  import_tasks: wordpress.yml
+- name: Iptables Hardening
+  import_tasks: backup.yml
 
 - name: Iptables Hardening
   import_tasks: iptables.yml

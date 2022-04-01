@@ -1,0 +1,7 @@
+---
+- hosts: filebeat_servers
+  become: True
+  roles:
+    - apt-repos
+    - dns
+    - filebeat-agent
