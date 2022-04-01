@@ -1,0 +1,10 @@
+---
+backup_host: 192.168.30.4
+backup_user: root
+
+db_users:
+  - { username: arvan, password: arvan, db: "*" }
+  - { username: wordpress, password: wordpress, db: wordpress }
+
+dbs:
+  - wordpress

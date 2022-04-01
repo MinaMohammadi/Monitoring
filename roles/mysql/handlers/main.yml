@@ -1,7 +1,7 @@
 ---
-- name: reload nginx
+- name: restart mysql
   service:
-    name: nginx
+    name: mysql
     state: restarted
 
 - name: restore iptables

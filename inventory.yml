@@ -6,8 +6,24 @@ webserver:
   vars:
     ansible_ssh_user: ubuntu
 
+database_server:
+  hosts: 192.168.1.204
+  vars:
+    ansible_ssh_user: root
+    
+gateway:
+  hosts: localhost
+  vars:
+    ansible_connection: local
+    ansible_ssh_user: root
+
+filebeat_servers:
+  hosts:
+   188.121.108.206:
+  vars:
+    ansible_ssh_user: ubuntu
+
 elk_server:
   hosts: 185.235.43.181
   vars:
     ansible_ssh_user: ubuntu
-
