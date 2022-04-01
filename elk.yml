@@ -1,0 +1,7 @@
+---
+- hosts: elk_server
+  become: True
+  roles:
+    - apt-repos
+    - dns 
+    - elk

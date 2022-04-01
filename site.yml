@@ -4,4 +4,4 @@
 - import_playbook: database.yml
 - import_playbook: gateway.yml
 - import_playbook: filebeat.yml
-
+- import_playbook: elk.yml

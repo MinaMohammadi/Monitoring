@@ -1,0 +1,18 @@
+---
+- name: restart es
+  service:
+    name: elasticsearch
+    state: restarted
+    enabled: yes
+
+- name: restart kibana
+  service:
+    name: kibana
+    state: restarted
+    enabled: yes
+
+- name: restart logstash
+  service:
+    name: logstash
+    state: restarted
+    enabled: yes

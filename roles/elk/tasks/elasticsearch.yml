@@ -1,0 +1,25 @@
+---
+
+- name: Add Elasticsearch apt key
+  apt_key:
+   url: "{{elasticsearch_repo_gpg_key_url}}"
+   state: present
+
+- name: Adding Elasticsearch repo
+  apt_repository:
+   repo: "deb {{elasticsearch_repo_base_url}}"
+   state: present
+
+- name: Install Elasticsearch
+  apt:
+   name: elasticsearch={{elk_version}}
+   update_cache: yes
+
+
+- name: Copy Elasticsearch
+  template:
+    src: es/elasticsearch.yml
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: root
+    mode: 0744
+  notify: restart es
