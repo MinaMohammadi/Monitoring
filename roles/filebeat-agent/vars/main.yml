@@ -1,0 +1,12 @@
+---
+logstash_host: 192.168.0.133:9200
+elk_version: 7.17.1
+
+## add elasticsearch repository
+
+#Download and install the Public Signing Key:
+elasticsearch_repo_gpg_key_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+
+#Save the repository definition to /etc/apt/sources.list.d
+elasticsearch_repo_base_url: "https://artifacts.elastic.co/packages/7.x/apt stable main"
+

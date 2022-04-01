@@ -1,0 +1,9 @@
+---
+- name: Clone your code from the git and download the basic libraries And complete the basic settings for your code.
+  import_tasks: basic-code-work.yml
+
+- name: Enter your code inside systemd.
+  import_tasks: build-service.yml
+
+- name: run iptables
+  import_tasks: iptables.yml

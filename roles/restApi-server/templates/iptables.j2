@@ -1,0 +1,12 @@
+*filter
+
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+{% for item in [18080, 22] %}
+-A INPUT -p tcp -m tcp --dport {{ item }} -j ACCEPT
+{% endfor %}
+
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -j DROP
+
+COMMIT
