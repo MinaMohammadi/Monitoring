@@ -1,0 +1,13 @@
+[Unit]
+Description=Alertmanager
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/alertmanager-0.24.0-rc.0.linux-amd64/alertmanager \
+  --config.file=/usr/local/bin/alertmanager-0.24.0-rc.0.linux-amd64/alertmanager.yml \
+  --cluster.advertise-address="192.168.0.2:9093"
+
+[Install]
+WantedBy=multi-user.target
