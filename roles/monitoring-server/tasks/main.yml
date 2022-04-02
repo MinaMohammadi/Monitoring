@@ -2,8 +2,8 @@
 - name: Prometheus Configs
   import_tasks: prometheus.yml
 
-- name: AlertManager Confings
-  import_tasks: alertmanager.yml
+  #- name: AlertManager Confings
+  #  import_tasks: alertmanager.yml
 
-- name: Grafana Configs
-  import_tasks: grafana.yml
+  #- name: Grafana Configs
+  #  import_tasks: grafana.yml
