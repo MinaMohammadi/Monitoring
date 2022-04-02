@@ -10,7 +10,7 @@ database_server:
   hosts: 192.168.1.204
   vars:
     ansible_ssh_user: root
-    
+
 gateway:
   hosts: localhost
   vars:
@@ -19,6 +19,12 @@ gateway:
 
 filebeat_servers:
   hosts:
-   188.121.108.206:
+    188.121.108.206:
+  vars:
+    ansible_ssh_user: ubuntu
+
+exporter_servers:
+  hosts:
+    188.121.109.227:
   vars:
     ansible_ssh_user: ubuntu
