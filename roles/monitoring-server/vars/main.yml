@@ -1,0 +1,22 @@
+---
+
+# Version
+prometheus_version: 2.34.0
+node_exporter_version: 1.3.1
+alertmanager_version: 0.24.0-rc.0
+grafana_version: 8.4.4
+
+prometheus_download_link:
+  - "https://github.com/prometheus/prometheus/releases/download \
+    /v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+
+node_exporter_download_link:
+  - "https://github.com/prometheus/node_exporter/releases/download \
+    /v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+
+alertmanager_download_link: 
+  - "https://github.com/prometheus/alertmanager/releases/download \
+    /v{{ grafana_version }}/alertmanager-{{ grafana_version }}.linux-amd64.tar.gz"
+
+# Grafana 
+grafana_repo_url: https://packages.grafana.com/oss/deb stable main
