@@ -1,0 +1,35 @@
+---
+- name: build node-exporter.service and alertmanager.service
+  copy:
+    src: service/{{ itme }}
+    dest: /lib/systemd/system/
+  loop:
+    - node-exporter.service
+    - alertmanager.service
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable AlertManager service cron on remote server
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - node-exporter
+    - alertmanager
+    - grafana
+
+- name: create dashboards in grafana
+  community.grafana.grafana_dashboard:
+    grafana_url: http://188.121.108.233:3000
+    grafana_user: "admin"
+    grafana_password: "admin"
+    org_id: "1"
+    dashboard_id: "{{ item }}"
+  loop:
+    - "13978"
+    - "12708"
+    - "14057"
+    - "14191"
