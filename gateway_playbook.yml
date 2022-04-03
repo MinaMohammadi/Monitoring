@@ -23,6 +23,7 @@
     - name: Clone ansible git repositorty
       git:
         repo: https://github.com/MinaMohammadi/Monitoring.git
-        dest: /ansible
+        dest: /home/ubuntu/ansible
         clone: yes
         update: yes
+      become: no
