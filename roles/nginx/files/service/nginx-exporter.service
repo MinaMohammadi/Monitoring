@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/nginx-prometheus-exporter
+ExecStart=/usr/local/bin/nginxExporter/nginx-prometheus-exporter
 
 [Install]
 WantedBy=multi-user.target

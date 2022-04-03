@@ -1,53 +1,42 @@
 ---
-- name: Install Node-exporter zip file with wget
+- name: Install Nginx-exporter zip file with wget
   get_url:
-    url: "{{ itme }}"
+    url: "{{ nginx_exporter_download_link }}"
     dest: /root
-  loop: "{{ exporter_download_link }}"
 
-- name: Extract Node-exporter Zip File
-  unarchive:
-    src: /root/{{ node_exporter_file }}.tar.gz
-    dest: /root
-    remote_src: yes
+- name: We create a directory to /usr/local/bin/nginxExporter
+  file:
+    path: /usr/local/bin/nginxExporter
+    state: directory
+    mode: 0755
 
 - name: Extract Nginx-exporter Zip File
   unarchive:
     src: /root/{{ nginx_exporter_file }}.tar.gz
-    dest: /usr/local/bin
+    dest: /usr/local/bin/nginxExporter
     remote_src: yes
 
-- name: Check if the Node-Exporter folder exists
-  stat:
-    path: /usr/local/bin/nodeExporter
-  register: dest_folder
-
-- name: Rename Node-Exporter dir
-  shell: cp -r /root/{{ node_exporter_file }} /usr/local/bin/nodeExporter
-  when: not dest_folder.stat.exists
-
 - name: copy nginx exporter config file to site-enable directory
-  copy:
+  template:
     src: nginx-config/nginx_exporter.conf
     dest: /etc/nginx/sites-enabled/
 
-- name: build node-exporter.service
+- name: build nginx-exporter.service
   copy:
-    src: service/{{ item }}
+    src: service/nginx-exporter.service
     dest: /lib/systemd/system/
-  loop:
-    - node-exporter.service
-    - nginx-exporter.service
 
 - name: just force systemd to reread Monitoring configs
   systemd:
     daemon_reload: yes
-
+    
 - name: enable node-exporter service cron on remote server
   systemd:
-    name: "{{ item }}"
+    name: nginx-exporter
     state: started
     enabled: yes
-  loop:
-    - node-exporter
-    - nginx-exporter
+
+- name: restart nginx service
+  systemd:
+    name: nginx
+    state: restart
