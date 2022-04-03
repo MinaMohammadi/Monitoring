@@ -19,6 +19,9 @@
 - name: Logstash Install and Config
   import_tasks: logstash.yml
 
+- name: Install Elasticsearch Exporter
+  import_tasks: install_exporter.yml
+
 - name: Copy netplan Config File
   copy:
     src: netplan/50-cloud-init.yaml
