@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/node-exporter/node_exporter
+ExecStart=/usr/local/bin/nodeExporter/node_exporter
 
 [Install]
 WantedBy=multi-user.target
