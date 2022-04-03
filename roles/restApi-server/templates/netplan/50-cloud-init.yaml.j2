@@ -7,20 +7,11 @@ network:
   version: 2
   ethernets:
     eth0:
-      dhcp4: true
+      dhcp4: no
+      addresses:
+        - {{ restapi_private_ip }}/24
+      gateway4: {{ gateway_private_ip_eth1 }}
       match:
         macaddress: ansible_eth0["macaddress"]
       mtu: 1500
       set-name: eth0
-    eth1:
-      addresses:
-        - {{ nginx_private_ip }}/24
-      match:
-        macaddress: ansible_eth1["macaddress"]
-      mtu: 1500
-      nameservers:
-        addresses:
-          - 8.8.8.8
-          - 1.1.1.1
-        search: []
-      set-name: eth1

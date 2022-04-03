@@ -4,7 +4,7 @@ network:
     eth0:
       dhcp4: true
       match:
-        macaddress: "<sanitized>"
+        macaddress: {{ ansible_eth0["macaddress"] }}
       mtu: 1500
       set-name: eth0
     eth1:
@@ -12,7 +12,7 @@ network:
       addresses:
         - {{ gateway_private_ip_eth1 }}/24
       match:
-        macaddress: "<sanitized>"
+        macaddress: {{ ansible_eth1["macaddress"] }}
       mtu: 1442
       nameservers:
         addresses:
@@ -25,7 +25,7 @@ network:
       addresses:
         - {{ gateway_private_ip_eth2 }}/24
       match:
-        macaddress: "<sanitized>"
+        macaddress: {{ ansible_eth2["macaddress"] }}
       mtu: 1442
       nameservers:
         addresses:

@@ -6,7 +6,7 @@ network:
             - {{ elk_private_ip }}/24
             gateway4: {{ gateway_private_ip_eth1 }}
             match:
-                macaddress: "<sanitized>"
+                macaddress: ansible_eth0["macaddress"]
             mtu: 1442
             set-name: eth0
             
