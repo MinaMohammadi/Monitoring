@@ -1,6 +1,9 @@
 all:
   # hosts:
   #   mail.example.com:
+  vars:
+    ansible_ssh_user: ubuntu
+
   children:
     gateway:
       hosts:
@@ -8,17 +11,20 @@ all:
       vars:
         ansible_connection: local
 
+    gateway_pub:
+      hosts:
+        188.121.110.154:
     webservers:
       hosts:
-        188.121.110.247:
+        192.168.0.202:
     dbservers:
       hosts:
         192.168.1.204:
 
     elk_server:
       hosts:
-        185.235.43.181:
+        192.168.0.14:
 
     monitor:
       hosts:
-        185.235.43.181:
+        192.168.10.13:

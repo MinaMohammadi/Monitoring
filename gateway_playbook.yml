@@ -1,6 +1,6 @@
 ---
 - name: gateway startup
-  hosts: gateway
+  hosts: gateway_pub
   become: yes
   tasks:
     - name: Install required packages
@@ -8,7 +8,7 @@
         name:
           - software-properties-common
           - git
-      update_cache: yes
+        update_cache: yes
 
     - name: Add ansible repo
       apt_repository:
@@ -18,7 +18,7 @@
     - name: Install ansible
       apt:
         name: ansible
-      update_cache: yes
+        update_cache: yes
 
     - name: Clone ansible git repositorty
       git:
