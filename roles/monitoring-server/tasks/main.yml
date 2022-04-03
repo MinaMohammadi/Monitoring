@@ -1,7 +1,4 @@
 ---
-- name: Node Exporter Configs
-  import_tasks: node_exporter.yml
-
 - name: AlertManager Confings
   import_tasks: alertmanager.yml
 
