@@ -1,0 +1,12 @@
+network:
+    version: 2
+    ethernets:
+        eth0:
+            addresses:
+            - {{ elk_private_ip }}/24
+            gateway4: {{ gateway_private_ip_eth1 }}
+            match:
+                macaddress: "<sanitized>"
+            mtu: 1442
+            set-name: eth0
+            
