@@ -33,3 +33,9 @@
     - "12708"
     - "14057"
     - "14191"
+
+- name: apply netplan
+  command: netplan apply
+  async: 45
+  poll: 0
+
