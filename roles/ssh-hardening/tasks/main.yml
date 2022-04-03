@@ -4,4 +4,4 @@
     src: ssh_hardening_config
     dest: /etc/ssh/sshd_config
   notify:
-    - Restart SSHD   
+    - Restart SSHD

@@ -9,14 +9,14 @@ network:
     eth0:
       dhcp4: true
       match:
-        macaddress: fa:16:3e:72:54:79
+        macaddress: "<sanitized>"
       mtu: 1500
       set-name: eth0
     eth1:
       addresses:
-        - 192.168.0.202/24
+        - {{ nginx_private_ip }}/24
       match:
-        macaddress: fa:16:3e:e3:4b:2d
+        macaddress: "<sanitized>"
       mtu: 1500
       nameservers:
         addresses:

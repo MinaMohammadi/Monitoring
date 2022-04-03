@@ -4,9 +4,9 @@
 #----------------------------------------
 USER='root'       # MySQL User
 PASSWORD='' # MySQL Password
-DAYS_TO_KEEP=5    # 0 to keep forever
+DAYS_TO_KEEP={{ backup_keep_days }}   # 0 to keep forever
 GZIP=1            # 1 = Compress
-BACKUP_PATH='/opt/db-backup'
+BACKUP_PATH={{ backup_path }}
 #----------------------------------------
 
 # Create the backup folder
