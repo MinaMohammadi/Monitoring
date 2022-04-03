@@ -4,10 +4,16 @@
     url: "{{ alertmanager_download_link }}"
     dest: /root
 
+- name: We create a directory to copy alertmanager file
+  file:
+    path: /usr/local/bin/alertmanager
+    state: directory
+    mode: 0777
+
 - name: Extract AlertManager Zip File
   unarchive:
     src: /root/{{ alertmanager_file }}.tar.gz
-    dest: /usr/local/bin/{{ alertmanager_file }}
+    dest: /usr/local/bin/alertmanager
     remote_src: yes
 
 - name: Copy the main of alertmanager to the remte server

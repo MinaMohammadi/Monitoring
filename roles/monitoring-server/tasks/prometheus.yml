@@ -4,10 +4,16 @@
     url: "{{ prometheus_download_link }}"
     dest: /root
 
+- name: We create a directory to copy prometheus file
+  file:
+    path: /usr/local/bin/prometheus
+    state: directory
+    mode: 0777
+
 - name: Extract Prometheus Zip File
   unarchive:
     src: /root/{{ prometheus_file }}.tar.gz
-    dest: /usr/local/bin/{{ prometheus_file }}
+    dest: /usr/local/bin/prometheus
     remote_src: yes
 
 - name: Copy the alert rules to the remote server
