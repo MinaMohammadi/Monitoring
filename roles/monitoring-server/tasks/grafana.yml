@@ -1,0 +1,32 @@
+---
+- name: grafana add gpg key 
+  apt_key:
+    url: https://packages.grafana.com/gpg.key
+    state: present
+
+- name: add repository Grafana
+  apt_repository:
+    repo: "deb {{ grafana_repo_url }}"
+    state: present
+
+- name: Install Grafana
+  apt:
+    name: grafana={{ grafana_version }}
+    update_cache: yes
+  notify:
+   - just force systemd to reread Monitoring configs
+   - enable AlertManager service cron on remote server
+
+- name: create datasource in grafana
+  community.grafana.grafana_datasource:
+    name: prometheus
+    grafana_url: http://188.121.108.233:3000
+    grafana_user: "admin"
+    grafana_password: "admin"
+    org_id: "1"
+    ds_type: prometheus
+    ds_url: http://188.121.108.233:9090
+    access: proxy
+    is_default: yes
+  notify:
+    - create dashboards in grafana
