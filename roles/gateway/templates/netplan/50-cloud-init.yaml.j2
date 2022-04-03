@@ -4,15 +4,15 @@ network:
     eth0:
       dhcp4: true
       match:
-        macaddress: fa:16:3e:90:40:43
+        macaddress: "<sanitized>"
       mtu: 1500
       set-name: eth0
     eth1:
       dhcp4: no
       addresses:
-        - 192.168.0.232/24
+        - {{ gateway_private_ip_eth1 }}/24
       match:
-        macaddress: fa:16:3e:c3:cf:3c
+        macaddress: "<sanitized>"
       mtu: 1442
       nameservers:
         addresses:
@@ -23,9 +23,9 @@ network:
     eth2:
       dhcp4: no
       addresses:
-        - 192.168.1.155/24
+        - {{ gateway_private_ip_eth2 }}/24
       match:
-        macaddress: fa:16:3e:11:e6:97
+        macaddress: "<sanitized>"
       mtu: 1442
       nameservers:
         addresses:
