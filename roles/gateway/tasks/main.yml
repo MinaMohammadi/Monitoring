@@ -36,6 +36,7 @@
     name: upload backup files
     job: "s3cmd -c /root/.s3cfg sync /opt/db-backup/ --preserve --delete-removed s3://{{ s3_sandoghche }}"
     special_time: daily
+    state: present
 
 - name: Copy backup controll script
   template:
@@ -45,11 +46,12 @@
     group: root
     mode: 0744
 
-- name: Cron job for backup controll script
+- name: Cron job for backup control script
   cron:
-    name: upload backup files
+    name: control backup files
     job: "/opt/script.sh"
     special_time: hourly
+    state: present
 
 - name: Iptables Hardening
   import_tasks: iptables.yml
