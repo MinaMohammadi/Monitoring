@@ -1,0 +1,18 @@
+---
+- name: Install AlertManager zip file with wget
+  get_url:
+    url: "{{ alertmanager_download_link }}"
+    dest: /root
+
+- name: Extract AlertManager Zip File
+  unarchive:
+    src: /root/{{ alertmanager_file }}.tar.gz
+    dest: /usr/local/bin/{{ alertmanager_file }}
+    remote_src: yes
+
+- name: Copy the main of alertmanager to the remte server
+  copy:
+    src: main-file/alertmanager.yml
+    dest: /usr/local/bin/{{ alertmanager_file }}
+  notify:
+    - build node-exporter.service and alertmanager.service
