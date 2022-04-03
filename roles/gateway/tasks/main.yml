@@ -64,3 +64,11 @@
     group: root
     mode: 0744
   notify: apply netplan
+
+- name: Copy hosts file
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644

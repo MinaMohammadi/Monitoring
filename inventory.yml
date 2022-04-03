@@ -1,12 +1,3 @@
-restapi:
-  hosts: 192.168.0.129
-
-webserver:
-  hosts: 192.168.0.202
-
-dbserver:
-  hosts: 192.168.1.204
-
 gateway:
   hosts: localhost
   vars:
@@ -16,5 +7,14 @@ gateway:
 gateway_pub:
   hosts: 188.121.110.154
 
+restapi:
+  hosts: restapi
+
+webserver:
+  hosts: webserver
+
+dbserver:
+  hosts: dbserver
+
 elk_server:
-  hosts: 185.235.43.181
+  hosts: elk_server

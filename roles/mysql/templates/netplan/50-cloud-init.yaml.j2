@@ -13,5 +13,9 @@ network:
       gateway4: {{ gateway_private_ip_eth2 }}
       match:
         macaddress: {{ ansible_eth0["macaddress"] }}
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 1.1.1.1
       mtu: 1500
       set-name: eth0
