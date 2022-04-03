@@ -1,0 +1,59 @@
+---
+- name: Install Node-exporter zip file with wget
+  get_url:
+    url: "{{ item }}"
+    dest: /root
+  loop: "{{ exporter_download_link }}"
+
+- name: Extract Node-exporter Zip File
+  unarchive:
+    src: /root/{{ item }}.tar.gz
+    dest: /root
+    remote_src: yes
+  loop:
+     - node_exporter_file
+     - mysql_exporter_file
+
+- name: Check if the Node-Exporter folder exists
+  stat:
+    path: /usr/local/bin/nodeExporter
+  register: dest_node_exporter_folder
+
+- name: Rename Node-Exporter dir
+  shell: cp -r /root/{{ node_exporter_file }} /usr/local/bin/nodeExporter
+  when: not dest_node_exporter_folder.stat.exists
+
+- name: Check if the Mysql-Exporter folder exists
+  stat:
+    path: /usr/local/bin/mysqlExporter
+    register: dest_mysql_exporter_folder
+
+- name: Rename Mysql-Exporter dir
+  shell: cp -r /root/{{ mysql_exporter_file }} /usr/local/bin/mysqlExporter
+  when: not dest_mysql_exporter_folder.stat.exists
+
+- name: write username and password in my.conf
+  cpy:
+    src: myCnf/.my.cnf
+    dest: /root
+
+- name: build node-exporter.service
+  copy:
+    src: service/{{ item }}
+    dest: /lib/systemd/system/
+  loop:
+    - node-exporter.service
+    - mysql-exporter.service
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable node-exporter service cron on remote server
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - node-exporter
+    - mysql-exporter
