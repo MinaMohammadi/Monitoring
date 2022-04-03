@@ -3,5 +3,5 @@
   hosts: Monitoring
   become: True
   roles:
-   - monitoring-server
    - node-exporter
+   - monitoring-server
