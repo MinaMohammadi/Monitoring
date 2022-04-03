@@ -7,3 +7,6 @@
 
 - name: Iptables Hardening
   import_tasks: iptables.yml
+
+- name: Install Exporter for Monitoring
+  import_tasks: install_exporter.yml

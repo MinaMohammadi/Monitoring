@@ -1,0 +1,53 @@
+---
+- name: Install Node-exporter zip file with wget
+  get_url:
+    url: "{{ itme }}"
+    dest: /root
+  loop: "{{ exporter_download_link }}"
+
+- name: Extract Node-exporter Zip File
+  unarchive:
+    src: /root/{{ node_exporter_file }}.tar.gz
+    dest: /root
+    remote_src: yes
+
+- name: Extract Nginx-exporter Zip File
+  unarchive:
+    src: /root/{{ nginx_exporter_file }}.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: Check if the Node-Exporter folder exists
+  stat:
+    path: /usr/local/bin/nodeExporter
+  register: dest_folder
+
+- name: Rename Node-Exporter dir
+  shell: cp -r /root/{{ node_exporter_file }} /usr/local/bin/nodeExporter
+  when: not dest_folder.stat.exists
+
+- name: copy nginx exporter config file to site-enable directory
+  copy:
+    src: nginx-config/nginx_exporter.conf
+    dest: /etc/nginx/sites-enabled/
+
+- name: build node-exporter.service
+  copy:
+    src: service/{{ item }}
+    dest: /lib/systemd/system/
+  loop:
+    - node-exporter.service
+    - nginx-exporter.service
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable node-exporter service cron on remote server
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - node-exporter
+    - nginx-exporter
