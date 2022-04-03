@@ -1,0 +1,28 @@
+---
+- name: Install Node-exporter zip file with wget
+  get_url:
+    url: "{{ node_exporter_download_link }}"
+    dest: /root
+
+- name: Extract Node-exporter Zip File
+  unarchive:
+    src: /root/{{ node_exporter_file }}.tar.gz
+    dest: /root
+    remote_src: yes
+
+- name: Check if the Node-Exporter folder exists
+  stat:
+    path: /usr/local/bin/nodeExporter
+  register: dest_folder
+
+- name: Rename Node-Exporter dir
+  shell: cp -r /root/{{ node_exporter_file }} /usr/local/bin/nodeExporter
+  when: not dest_folder.stat.exists
+
+- name: build node-exporter.service
+  copy:
+    src: service/node-exporter.service
+    dest: /lib/systemd/system/
+  notify:
+    - just force systemd to reread Monitoring configs
+    - enable node-exporter service cron on remote server
