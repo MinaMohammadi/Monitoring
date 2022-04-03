@@ -3,3 +3,40 @@
   get_url:
     url: "{{ prometheus_download_link }}"
     dest: /root
+
+- name: Extract Prometheus Zip File
+  unarchive:
+    src: /root/{{ prometheus_file }}.tar.gz
+    dest: /usr/local/bin/{{ prometheus_file }}
+    remote_src: yes
+
+- name: Copy the alert rules to the remote server
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin/{{ prometheus_file }}
+  loop:
+    - alert_configs/elasticsearch_alerts.yml
+    - alert_configs/identical_alerts.yml
+    - alert_configs/mysql_alerts.yml
+    - alert_configs/nginx_alerts.yml
+    - alert_configs/prometheus_alerts.yml
+
+- name: Copy the main file of Prometheus 
+  copy:
+    src: main-file/prometheus.yml
+    dest: /usr/local/bin/{{ prometheus_file }}
+
+- name: build Prometheus.service
+  copy:
+    src: service/prometheus.service
+    dest: /lib/systemd/system/
+
+- name: just force systemd ro reload service
+  systemd:
+    daemon_reload: yes
+
+- name: enable Prometheus service cron on remote server
+  systemd:
+    name: prometheus
+    state: started
+    enabled: yes
