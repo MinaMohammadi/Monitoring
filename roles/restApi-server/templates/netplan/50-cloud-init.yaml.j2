@@ -12,6 +12,6 @@ network:
         - {{ restapi_private_ip }}/24
       gateway4: {{ gateway_private_ip_eth1 }}
       match:
-        macaddress: ansible_eth0["macaddress"]
+        macaddress: {{ ansible_eth0["macaddress"] }}
       mtu: 1500
       set-name: eth0

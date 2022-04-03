@@ -1,5 +1,5 @@
 ---
-- hosts: database_server
+- hosts: dbserver
   become: True
   roles:
     - mysql
