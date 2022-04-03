@@ -8,6 +8,9 @@
 - name: Iptables Hardening
   import_tasks: iptables.yml
 
+- name: Install Mysql exporter
+  import_tasks: install_exporter.yml
+
 - name: Copy netplan Config File
   copy:
     src: netplan/50-cloud-init.yaml
