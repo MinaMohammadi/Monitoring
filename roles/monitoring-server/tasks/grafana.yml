@@ -23,12 +23,12 @@
 - name: create datasource in grafana
   community.grafana.grafana_datasource:
     name: prometheus
-    grafana_url: http://188.121.108.199:3000
+    grafana_url: https://grafana.bukhara-chkh.ir
     grafana_user: "admin"
     grafana_password: "admin"
     org_id: "1"
     ds_type: prometheus
-    ds_url: http://188.121.108.199:9090
+    ds_url: https://prometheus.bukhara-chkh.ir
     access: proxy
     is_default: yes
   notify:

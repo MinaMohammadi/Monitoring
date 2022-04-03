@@ -4,17 +4,20 @@
     url: "{{ node_exporter_download_link }}"
     dest: /root
 
-- name: We create a directory to copy node-exporter file
-  file:
-    path: /usr/local/bin/node-exporter
-    state: directory
-    mode: 0777
-
 - name: Extract Node-exporter Zip File
   unarchive:
     src: /root/{{ node_exporter_file }}.tar.gz
-    dest: /usr/local/bin/node-exporter
+    dest: /root
     remote_src: yes
+
+- name: Check if the Node-Exporter folder exists
+  stat:
+    path: /usr/local/bin/nodeExporter
+  register: dest_folder
+
+- name: Rename Node-Exporter dir
+  shell: cp -r /root/{{ node_exporter_file }} /usr/local/bin/nodeExporter
+  when: not dest_folder.stat.exists
 
 - name: build node-exporter.service
   copy:
