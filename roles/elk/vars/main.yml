@@ -2,6 +2,7 @@
 elk_version: 7.17.1
 es_url: "http://127.0.0.1:9100"
 server_ip_addr: 185.235.43.181
+server_gateway_ip: 192.168.0.232
 
 ## add elasticsearch repository
 
