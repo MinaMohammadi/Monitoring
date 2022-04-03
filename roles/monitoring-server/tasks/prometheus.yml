@@ -19,7 +19,7 @@
 - name: Copy the alert rules to the remote server
   copy:
     src: "{{ item }}"
-    dest: /usr/local/bin/{{ prometheus_file }}
+    dest: /usr/local/bin/prometheus
   loop:
     - alert_configs/elasticsearch_alerts.yml
     - alert_configs/identical_alerts.yml
@@ -30,7 +30,7 @@
 - name: Copy the main file of Prometheus 
   copy:
     src: main-file/prometheus.yml
-    dest: /usr/local/bin/{{ prometheus_file }}
+    dest: /usr/local/bin/prometheus
 
 - name: build Prometheus.service
   copy:

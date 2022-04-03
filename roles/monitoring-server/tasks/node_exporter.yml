@@ -15,3 +15,18 @@
     src: /root/{{ node_exporter_file }}.tar.gz
     dest: /usr/local/bin/node-exporter
     remote_src: yes
+
+- name: build node-exporter.service
+  copy:
+    src: service/node-exporter.service
+    dest: /lib/systemd/system/
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable node-exporter service cron on remote server
+  systemd:
+    name: node-exporter
+    state: started
+    enabled: yes

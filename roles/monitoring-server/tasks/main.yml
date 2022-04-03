@@ -1,12 +1,12 @@
 ---
-- name: Prometheus Configs
-  import_tasks: prometheus.yml
-
 - name: Node Exporter Configs
   import_tasks: node_exporter.yml
 
 - name: AlertManager Confings
   import_tasks: alertmanager.yml
+
+- name: Prometheus Configs
+  import_tasks: prometheus.yml
 
 - name: Grafana Configs
   import_tasks: grafana.yml
@@ -18,4 +18,4 @@
     owner: root
     group: root
     mode: 0744
-  notify: apply netplan
+    notify: apply netplan

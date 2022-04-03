@@ -13,19 +13,22 @@
   apt:
     name: grafana={{ grafana_version }}
     update_cache: yes
-  notify:
-   - just force systemd to reread Monitoring configs
-   - enable AlertManager service cron on remote server
+
+- name: enable grafana service cron on remote server
+  systemd:
+    name: grafana-server
+    state: started
+    enabled: yes
 
 - name: create datasource in grafana
   community.grafana.grafana_datasource:
     name: prometheus
-    grafana_url: http://188.121.108.233:3000
+    grafana_url: http://188.121.108.199:3000
     grafana_user: "admin"
     grafana_password: "admin"
     org_id: "1"
     ds_type: prometheus
-    ds_url: http://188.121.108.233:9090
+    ds_url: http://188.121.108.199:9090
     access: proxy
     is_default: yes
   notify:

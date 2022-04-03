@@ -19,6 +19,19 @@
 - name: Copy the main of alertmanager to the remte server
   copy:
     src: main-file/alertmanager.yml
-    dest: /usr/local/bin/{{ alertmanager_file }}
-  notify:
-    - build node-exporter.service and alertmanager.service
+    dest: /usr/local/bin/alertmanager
+
+- name: build alertmanager.service
+  copy:
+    src: service/alertmanager.service
+    dest: /lib/systemd/system/
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable AlertManager service cron on remote server
+  systemd:
+    name: alertmanager
+    state: started
+    enabled: yes
