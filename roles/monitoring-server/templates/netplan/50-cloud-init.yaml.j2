@@ -11,6 +11,6 @@ network:
             - {{ monitor_private_ip }}/24
             gateway4: {{ gateway_private_ip_eth1 }}
             match:
-                macaddress:  {{ ansible_eth1["macaddress"] }}
+                macaddress:  {{ ansible_eth0["macaddress"] }}
             mtu: 1442
             set-name: eth0
