@@ -11,8 +11,8 @@
     remote_src: yes
 
 - name: Copy the main of alertmanager to the remte server
-  copy:
-    src: main-file/alertmanager.yml
+  template:
+    src: main-file/alertmanager.yml.j2
     dest: /usr/local/bin/{{ alertmanager_file }}
 
 - name: build alertmanager.service
