@@ -35,8 +35,8 @@
   community.grafana.grafana_datasource:
     name: prometheus
     grafana_url: "{{ grafana_url }}"
-    grafana_user: "{{ grafana_username }}"
-    grafana_password: "{{ grafana_pass }}"
+    grafana_user: "admin"
+    grafana_password: "admin"
     org_id: "1"
     ds_type: prometheus
     ds_url: "{{ prometheus_url }}"
