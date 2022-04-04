@@ -23,7 +23,7 @@ wildcard_key_path: "{{ letsencrypt_dir }}/privkey.pem"
 
 pb_rest_api_addr: "http://{{ restapi_private_ip }}:18080/"
 kibana_addr: "http://{{ elk_private_ip }}:5601/"
-grafana_addr: "http://{{ monitor_private_ip }}:8000/"
+grafana_addr: "http://{{ monitor_private_ip }}:3000/"
 prometheus_addr: "http://{{ monitor_private_ip }}:9090/"
 
 # wordpress
