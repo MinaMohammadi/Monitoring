@@ -1,2 +1,23 @@
 Monitoring:
   hosts: 192.168.0.2
+  
+gateway:
+  hosts: localhost
+  vars:
+    ansible_connection: local
+    ansible_ssh_user: root
+
+gateway_pub:
+  hosts: 188.121.110.154
+
+restapi:
+  hosts: restapi
+
+webserver:
+  hosts: webserver
+
+dbserver:
+  hosts: dbserver
+
+elk_server:
+  hosts: elk_server

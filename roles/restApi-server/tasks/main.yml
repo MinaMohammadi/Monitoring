@@ -1,0 +1,21 @@
+---
+- name: Copy netplan Config File
+  template:
+    src: netplan/50-cloud-init.yaml.j2
+    dest: /etc/netplan/50-cloud-init.yaml
+    owner: root
+    group: root
+    mode: 0744
+  notify: apply netplan
+
+- name: Force for apply netplan
+  meta: flush_handlers
+
+- name: Clone your code from the git and download the basic libraries And complete the basic settings for your code.
+  import_tasks: basic-code-work.yml
+
+- name: Enter your code inside systemd.
+  import_tasks: build-service.yml
+
+- name: run iptables
+  import_tasks: iptables.yml

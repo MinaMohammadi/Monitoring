@@ -1,0 +1,5 @@
+---
+- hosts: exporter_servers
+  become: True
+  roles:
+    - exporter

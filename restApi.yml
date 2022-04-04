@@ -1,0 +1,7 @@
+---
+- name: Configure Rest Api with Ansible
+  hosts: RestApi
+  become: True
+  roles:
+   - restApi-server
+   - ssh-hardening

@@ -1,0 +1,35 @@
+---
+- name: Copy netplan Config File
+  template:
+    src: netplan/50-cloud-init.yaml.j2
+    dest: /etc/netplan/50-cloud-init.yaml
+    owner: root
+    group: root
+    mode: 0744
+  notify: apply netplan
+
+- name: Force for apply netplan
+  meta: flush_handlers
+
+- name: "Get all installed packages"
+  package_facts:
+
+- name: Install required packages
+  apt:
+    name:
+      - apt-transport-https
+      - openssl
+      - default-jdk
+    update_cache: yes
+
+- name: Elasticsearch Install and Config
+  import_tasks: elasticsearch.yml
+
+- name: Kibana Install and Config
+  import_tasks: kibana.yml
+
+- name: Logstash Install and Config
+  import_tasks: logstash.yml
+
+- name: Install Elasticsearch Exporter
+  import_tasks: install_exporter.yml
