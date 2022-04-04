@@ -2,11 +2,11 @@
 - name: Install AlertManager zip file with wget
   get_url:
     url: "{{ alertmanager_download_link }}"
-    dest: /root
+    dest: /home/ubuntu
 
 - name: Extract AlertManager Zip File
   unarchive:
-    src: /root/{{ alertmanager_file }}.tar.gz
+    src: /home/ubuntu/{{ alertmanager_file }}.tar.gz
     dest: /usr/local/bin
     remote_src: yes
 
