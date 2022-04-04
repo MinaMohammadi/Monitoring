@@ -19,11 +19,23 @@
 - name: Logstash Install and Config
   import_tasks: logstash.yml
 
+<<<<<<< HEAD
 - name: Copy netplan Config File
   template:
+=======
+- name: Install Elasticsearch Exporter
+  import_tasks: install_exporter.yml
+
+- name: Copy netplan Config File
+  copy:
+>>>>>>> 11370f75f50e69b4b0bdd0685d5b7628ea368327
     src: netplan/50-cloud-init.yaml
     dest: /etc/netplan/50-cloud-init.yaml
     owner: root
     group: root
     mode: 0744
+<<<<<<< HEAD
   notify: apply netplan
+=======
+  notify: apply netplan
+>>>>>>> 11370f75f50e69b4b0bdd0685d5b7628ea368327
