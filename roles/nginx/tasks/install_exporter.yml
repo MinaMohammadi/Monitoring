@@ -20,23 +20,12 @@
   template:
     src: nginx-config/nginx_exporter.conf
     dest: /etc/nginx/sites-enabled/
+  notify: reload nginx
 
 - name: build nginx-exporter.service
   copy:
     src: service/nginx-exporter.service
     dest: /lib/systemd/system/
-
-- name: just force systemd to reread Monitoring configs
-  systemd:
-    daemon_reload: yes
-    
-- name: enable node-exporter service cron on remote server
-  systemd:
-    name: nginx-exporter
-    state: started
-    enabled: yes
-
-- name: restart nginx service
-  systemd:
-    name: nginx
-    state: restart
+  notify:
+    - just force systemd to reread Monitoring configs
+    - enable node-exporter service cron on remote server
