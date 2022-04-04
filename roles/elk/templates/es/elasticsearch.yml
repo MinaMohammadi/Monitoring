@@ -1,6 +1,6 @@
 # ---------------------------------- Cluster -----------------------------------#
 # Use a descriptive name for your cluster:
-cluster.name:  Bokhara-elasticsearch
+cluster.name: Bokhara-elasticsearch
 #
 # ------------------------------------ Node ------------------------------------
 # Use a descriptive name for the node:
@@ -30,7 +30,7 @@ http.port: 9200
 # Pass an initial list of hosts to perform discovery when this node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-discovery.seed_hosts: ["{{ server_ip_addr }}"]
+discovery.seed_hosts: ["{{ elk_private_ip }}"]
 #
 # Bootstrap the cluster using an initial set of master-eligible nodes:
 discovery.type: single-node
@@ -41,8 +41,7 @@ discovery.type: single-node
 #
 #                                 *** WARNING ***
 #
-# To protect your data, we strongly encourage you to enable the Elasticsearch security features. 
+# To protect your data, we strongly encourage you to enable the Elasticsearch security features.
 # Refer to the following documentation for instructions.
 
-xpack.security.enabled: true
-
+#xpack.security.enabled: true

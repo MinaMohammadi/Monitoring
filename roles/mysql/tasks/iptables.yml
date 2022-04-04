@@ -5,7 +5,7 @@
     update_cache: yes
 
 - name: Copy iptables template rules to /etc/iptables
-  copy:
-    src: iptables/rules.v4
+  template:
+    src: iptables/rules.v4.j2
     dest: /etc/iptables/rules.v4
   notify: restore iptables

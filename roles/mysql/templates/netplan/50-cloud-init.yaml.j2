@@ -7,20 +7,15 @@ network:
   version: 2
   ethernets:
     eth0:
-      dhcp4: true
-      match:
-        macaddress: fa:16:3e:72:54:79
-      mtu: 1500
-      set-name: eth0
-    eth1:
+      dhcp4: no
       addresses:
-        - 192.168.0.202/24
+        - {{ mysql_private_ip }}/24
+      gateway4: {{ gateway_private_ip_eth2 }}
       match:
-        macaddress: fa:16:3e:e3:4b:2d
-      mtu: 1500
+        macaddress: {{ ansible_eth0["macaddress"] }}
       nameservers:
         addresses:
           - 8.8.8.8
           - 1.1.1.1
-        search: []
-      set-name: eth1
+      mtu: 1500
+      set-name: eth0

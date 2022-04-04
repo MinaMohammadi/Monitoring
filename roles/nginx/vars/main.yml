@@ -21,17 +21,17 @@ letsencrypt_dir: "/etc/letsencrypt/live/{{ root_domain_name }}"
 wildcard_cert_path: "{{ letsencrypt_dir }}/cert.pem"
 wildcard_key_path: "{{ letsencrypt_dir }}/privkey.pem"
 
-pb_rest_api_addr: http://192.168.0.129:18080/
-kibana_addr: http://192.168.0.101:5601/
-grafana_addr: http://192.168.0.223:8000/
-prometheus_addr: http://192.168.0.223:9090/
+pb_rest_api_addr: "http://{{ restapi_private_ip }}:18080/"
+kibana_addr: "http://{{ elk_private_ip }}:5601/"
+grafana_addr: "http://{{ monitor_private_ip }}:3000/"
+prometheus_addr: "http://{{ monitor_private_ip }}:9090/"
 
 # wordpress
 # wordpress database settings
 wp_db_name: wordpress
 wp_db_user: wordpress
 wp_db_password: wordpress
-wp_db_host: 192.168.0.232
+wp_db_host: "{{ gateway_private_ip_eth1 }}"
 
 # settings
 auto_up_disable: true
@@ -46,3 +46,5 @@ nginx_exporter_file: "nginx-prometheus-exporter_{{ nginx_exporter_version }}_lin
 # links
 nginx_exporter_download_link:
   "https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v{{ nginx_exporter_version }}/{{ nginx_exporter_file }}.tar.gz"
+  
+open_input_ports: [9110, 9093, 9100, 9113, 80, 443]

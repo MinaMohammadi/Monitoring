@@ -26,3 +26,8 @@
     name: elasticsearch-exporter
     state: started
     enabled: yes
+    
+- name: apply netplan
+  command: netplan apply
+  async: 45
+  poll: 0

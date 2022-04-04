@@ -1,7 +1,7 @@
 ---
 elk_version: 7.17.1
-es_url: "http://127.0.0.1:9100"
-server_ip_addr: 185.235.43.181
+es_url: "http://127.0.0.1:9200"
+# server_ip_addr:
 
 ## add elasticsearch repository
 
@@ -20,3 +20,8 @@ elk_exporter_file: elasticsearch_exporter-{{ elk_exporter_version }}.linux-amd64
 # link
 elk_exporter_download_link:
  "https://github.com/prometheus-community/elasticsearch_exporter/releases/download/v{{ elk_exporter_version }}/{{ elk_exporter_file }}.tar.gz"
+
+es_user: kibana_system
+es_pass: 123456
+
+open_input_ports: [9100, 5044, 9200, 9110, 5601, 9093]

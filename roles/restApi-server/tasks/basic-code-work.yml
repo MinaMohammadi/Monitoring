@@ -7,9 +7,14 @@
 - name: Clone a GitHub Repository
   git:
     repo: https://github.com/Ygn-Amirjani/Phonebook.git
-    dest: Phonebook
+    dest: ~/Phonebook
     clone: yes
     update: yes
+
+- name: Copy config file
+  template:
+    src: config.json.j2
+    dest: ~/Phonebook/conf/config.json
 
 - name: Install specified python requirements
   pip:
