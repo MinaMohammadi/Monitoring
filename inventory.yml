@@ -5,7 +5,7 @@ gateway:
     ansible_ssh_user: root
 
 gateway_pub:
-  hosts: gateway
+  hosts: 188.121.110.154
 
 restapi:
   hosts: restapi
