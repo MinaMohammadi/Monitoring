@@ -36,3 +36,13 @@ wp_db_host: 192.168.0.232
 # settings
 auto_up_disable: true
 core_update_level: true
+
+# version
+nginx_exporter_version: 0.10.0
+
+# file name
+nginx_exporter_file: "nginx-prometheus-exporter_{{ nginx_exporter_version }}_linux_amd64"
+
+# links
+nginx_exporter_download_link:
+  "https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v{{ nginx_exporter_version }}/{{ nginx_exporter_file }}.tar.gz"
