@@ -7,7 +7,7 @@
 - name: Clone a GitHub Repository
   git:
     repo: https://github.com/Ygn-Amirjani/Phonebook.git
-    dest: Phonebook
+    dest: ~/Phonebook
     clone: yes
     update: yes
 
