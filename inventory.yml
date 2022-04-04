@@ -1,6 +1,3 @@
-Monitoring:
-  hosts: 192.168.0.2
-  
 gateway:
   hosts: localhost
   vars:
@@ -21,3 +18,6 @@ dbserver:
 
 elk_server:
   hosts: elk_server
+
+Monitoring:
+  hosts: monitoring
