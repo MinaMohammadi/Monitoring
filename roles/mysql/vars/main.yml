@@ -8,6 +8,7 @@ db_users:
 
 dbs:
   - wordpress
+  - phonebook
 
 backup_keep_days: 5
 

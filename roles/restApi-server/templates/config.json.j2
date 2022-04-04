@@ -1,0 +1,22 @@
+{
+	"host": "0.0.0.0",
+	"port": "18080",
+	"routes":{
+		"user":{
+			
+			"select":"/user/select/<string:username>",
+			"insert":"/user/insert",
+			"delete":"/user/delete",
+			"update":"/user/update/<string:phoneNumber>"
+		}
+	},
+	"database": {
+
+		"mysql": true,
+		"username": "{{ db_user }}",
+		"password": "{{ db_password }}",
+		"server": "{{ db_host }}",
+		"db": "phonebook"
+		
+	}
+}
