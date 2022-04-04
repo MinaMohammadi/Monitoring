@@ -1,0 +1,14 @@
+---
+
+- name: Install Kibana
+  apt:
+   name: kibana={{elk_version}}
+   update_cache: yes
+
+- name: Copy kibana.yml
+  template:
+    src: kibana/kibana.yml
+    dest: /etc/kibana/kibana.yml
+    owner: root
+    mode: 0744
+  notify: restart kibana

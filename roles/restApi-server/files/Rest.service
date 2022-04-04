@@ -1,0 +1,10 @@
+[Unit]
+Description=My Rest Project
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=python3 /root/Phonebook/REST-API/app.py
+
+[Install]
+WantedBy=multi-user.target

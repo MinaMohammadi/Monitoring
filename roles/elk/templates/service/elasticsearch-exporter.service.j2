@@ -1,0 +1,10 @@
+[Unit]
+Description=Prometheus Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/{{ elk_exporter_file }}/elasticsearch_exporter
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+---
+- name: Nginx Install and Config
+  import_tasks: nginx.yml
+
+- name: Wordpress Install and Config
+  import_tasks: wordpress.yml
+
+- name: Install nginx exporter
+  import_tasks: install_exporter.yml
+
+- name: Iptables Hardening
+  import_tasks: iptables.yml
+
+- name: Copy netplan Config File
+  template:
+    src: netplan/50-cloud-init.yaml.j2
+    dest: /etc/netplan/50-cloud-init.yaml
+    owner: root
+    group: root
+    mode: 0744
+  notify: apply netplan
