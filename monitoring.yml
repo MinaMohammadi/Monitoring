@@ -5,5 +5,5 @@
   roles:
    - apt-repose
    - dns
-   - node-exporter
    - monitoring-server
+   - node-exporter
