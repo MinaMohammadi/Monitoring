@@ -7,27 +7,18 @@
 - name: Extract AlertManager Zip File
   unarchive:
     src: /root/{{ alertmanager_file }}.tar.gz
-    dest: /root
+    dest: /usr/local/bin
     remote_src: yes
-
-- name: Check if the AlertManager folder exists
-  stat:
-    path: /usr/local/bin/alertmanager
-  register: dest_folder
-
-- name: Rename Alertmanager dir
-  shell: cp -r /root/{{ alertmanager_file }} /usr/local/bin/alertmanager
-  when: not dest_folder.stat.exists
 
 - name: Copy the main of alertmanager to the remte server
   copy:
     src: main-file/alertmanager.yml
-    dest: /usr/local/bin/alertmanager
+    dest: /usr/local/bin/{{ alertmanager_file }}
 
 - name: build alertmanager.service
-  copy:
-    src: service/alertmanager.service
-    dest: /lib/systemd/system/
+  template:
+    src: alertmanager.service.j2
+    dest: /lib/systemd/system/alertmanager.service
 
 - name: just force systemd to reread Monitoring configs
   systemd:

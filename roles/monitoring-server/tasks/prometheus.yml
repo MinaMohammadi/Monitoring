@@ -7,22 +7,13 @@
 - name: Extract Prometheus Zip File
   unarchive:
     src: /root/{{ prometheus_file }}.tar.gz
-    dest: /root
+    dest: /usr/local/bin
     remote_src: yes
-
-- name: Check if the Prometheus folder exists
-  stat:
-    path: /usr/local/bin/prometheus
-  register: dest_folder
-
-- name: Rename Prometheus dir
-  shell: cp -r /root/{{ prometheus_file }} /usr/local/bin/prometheus
-  when: not dest_folder.stat.exists
 
 - name: Copy the alert rules to the remote server
   copy:
     src: "{{ item }}"
-    dest: /usr/local/bin/prometheus
+    dest: /usr/local/bin/{{ prometheus_file }}
   loop:
     - alert_configs/elasticsearch_alerts.yml
     - alert_configs/identical_alerts.yml
@@ -33,12 +24,12 @@
 - name: Copy the main file of Prometheus 
   copy:
     src: main-file/prometheus.yml
-    dest: /usr/local/bin/prometheus
+    dest: /usr/local/bin/{{ prometheus_file }}
 
 - name: build Prometheus.service
-  copy:
-    src: service/prometheus.service
-    dest: /lib/systemd/system/
+  template:
+    src: prometheus.service.j2
+    dest: /lib/systemd/system/prometheus.service
 
 - name: just force systemd ro reload service
   systemd:
