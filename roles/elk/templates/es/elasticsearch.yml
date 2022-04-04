@@ -44,4 +44,4 @@ discovery.type: single-node
 # To protect your data, we strongly encourage you to enable the Elasticsearch security features.
 # Refer to the following documentation for instructions.
 
-xpack.security.enabled: true
+#xpack.security.enabled: true
