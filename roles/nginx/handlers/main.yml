@@ -16,7 +16,7 @@
   systemd:
     daemon_reload: yes
     
-- name: enable node-exporter service cron on remote server
+- name: enable nginx-exporter service cron on remote server
   systemd:
     name: nginx-exporter
     state: started

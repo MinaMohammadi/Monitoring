@@ -28,4 +28,4 @@
     dest: /lib/systemd/system/
   notify:
     - just force systemd to reread Monitoring configs
-    - enable node-exporter service cron on remote server
+    - enable nginx-exporter service cron on remote server
