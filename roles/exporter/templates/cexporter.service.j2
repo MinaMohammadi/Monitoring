@@ -1,0 +1,13 @@
+[Unit]
+Description=custom exporter
+After=multi-user.target
+
+[Service]
+Type=simple
+{% for var in eviroment_vars %}
+Environment="{{ var.name }}={{ var.value }}"
+{% endfor %}
+ExecStart=python3 {{ cexporter_entrypoint }}
+
+[Install]
+WantedBy=multi-user.target
