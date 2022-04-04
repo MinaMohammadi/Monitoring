@@ -8,12 +8,12 @@ route:
 receivers:
   - name: 'email-notifications'
     email_configs:
-    - to: yeganeh.a.m7979@gmail.com
-      from: yeganeh.a.m7979@gmail.com
+    - to: alirezaazizi1396622@gmail.com
+      from: alirezaazizi1396622@gmail.com
       smarthost: smtp.gmail.com:587
-      auth_username: yeganeh.a.m7979@gmail.com
-      auth_identity: yeganeh.a.m7979@gmail.com
-      auth_password: YgnFrb7998
+      auth_username: alirezaazizi1396622@gmail.com
+      auth_identity: alirezaazizi1396622@gmail.com
+      auth_password: fjbcmclagunlmcld
 
 inhibit_rules:
   - source_match:
