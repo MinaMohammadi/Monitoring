@@ -20,6 +20,11 @@
     state: started
     enabled: yes
 
+- name: Copy custom_exporter.json in /var/lib/grafana/dashboards
+  copy:
+    src: dashboards/custom_exporter.json
+    dest: /var/lib/grafana/dashboards/custom_exporter.json
+
 - name: create datasource in grafana
   community.grafana.grafana_datasource:
     name: prometheus
@@ -33,3 +38,4 @@
     is_default: yes
   notify:
     - create dashboards in grafana
+    - create custom dashboards in grafana
