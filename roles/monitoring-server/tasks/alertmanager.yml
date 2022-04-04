@@ -1,0 +1,31 @@
+---
+- name: Install AlertManager zip file with wget
+  get_url:
+    url: "{{ alertmanager_download_link }}"
+    dest: /root
+
+- name: Extract AlertManager Zip File
+  unarchive:
+    src: /root/{{ alertmanager_file }}.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: Copy the main of alertmanager to the remte server
+  copy:
+    src: main-file/alertmanager.yml
+    dest: /usr/local/bin/{{ alertmanager_file }}
+
+- name: build alertmanager.service
+  template:
+    src: service/alertmanager.service.j2
+    dest: /lib/systemd/system/alertmanager.service
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable AlertManager service cron on remote server
+  systemd:
+    name: alertmanager
+    state: started
+    enabled: yes

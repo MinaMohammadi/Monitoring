@@ -1,4 +1,5 @@
 ---
+- import_playbook: monitoring.yml
 - import_playbook: restApi.yml
 - import_playbook: nginx.yml
 - import_playbook: database.yml

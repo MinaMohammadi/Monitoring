@@ -1,0 +1,7 @@
+---
+- name: Configure Monitoring with Ansible
+  hosts: Monitoring
+  become: True
+  roles:
+   - node-exporter
+   - monitoring-server

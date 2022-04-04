@@ -1,0 +1,13 @@
+[Unit]
+Description=Alertmanager
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/{{ alertmanager_file }}/alertmanager \
+  --config.file=/usr/local/bin/{{ alertmanager_file }}/alertmanager.yml \
+  --cluster.advertise-address="{{ monitor_private_ip }}:9093"
+
+[Install]
+WantedBy=multi-user.target

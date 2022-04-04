@@ -1,0 +1,20 @@
+---
+- name: Install Node-exporter zip file with wget
+  get_url:
+    url: "{{ node_exporter_download_link }}"
+    dest: /root
+
+- name: Extract Node-exporter Zip File
+  unarchive:
+    src: /root/{{ node_exporter_file }}.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: build node-exporter.service
+  template:
+    src: node-exporter.service.j2
+    dest: /lib/systemd/system/node-exporter.service
+  notify:
+    - just force systemd to reread Monitoring configs
+    - enable node-exporter service cron on remote server
+

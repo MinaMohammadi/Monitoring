@@ -1,0 +1,31 @@
+---
+
+# information email alert
+email: alirezaazizi1396622@gmail.com
+password: fjbcmclagunlmcld
+
+# Version
+prometheus_version: 2.34.0
+alertmanager_version: 0.24.0-rc.0
+grafana_version: 8.4.4
+
+# File name
+prometheus_file: "prometheus-{{ prometheus_version }}.linux-amd64"
+alertmanager_file: "alertmanager-{{ alertmanager_version }}.linux-amd64"
+
+#links
+prometheus_download_link:
+  "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/{{ prometheus_file }}.tar.gz"
+
+alertmanager_download_link: 
+  "https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/{{ alertmanager_file }}.tar.gz"
+
+grafana_add_gpg_key: https://packages.grafana.com/gpg.key
+grafana_repo_url: https://packages.grafana.com/oss/deb stable main
+
+prometheus_url: https://prometheus.bukhara-chkh.ir
+grafana_url: https://grafana.bukhara-chkh.ir
+
+# Grafana 
+grafana_username: "admin"
+grafana_pass: "admin"
