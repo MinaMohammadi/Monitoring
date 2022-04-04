@@ -9,7 +9,7 @@
 - name: Cron Job for Upload Backup Files in {{ backup_user }}
   cron:
     name: sync backup files with {{ backup_user }}
-    job: "rsync -rtu --delete /etc/opt/ {{ backup_user }}@{{ backup_host }}:/etc/opt/"
+    job: "rsync -rtu --delete {{ backup_path }} {{ backup_user }}@{{ backup_host }}:{{ backup_path }}"
 
 - name: Cron Job for Backup Script
   cron:

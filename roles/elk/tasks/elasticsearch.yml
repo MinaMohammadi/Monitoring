@@ -1,20 +1,18 @@
 ---
-
 - name: Add Elasticsearch apt key
   apt_key:
-   url: "{{elasticsearch_repo_gpg_key_url}}"
-   state: present
+    url: "{{elasticsearch_repo_gpg_key_url}}"
+    state: present
 
 - name: Adding Elasticsearch repo
   apt_repository:
-   repo: "deb {{elasticsearch_repo_base_url}}"
-   state: present
+    repo: "deb {{elasticsearch_repo_base_url}}"
+    state: present
 
 - name: Install Elasticsearch
   apt:
-   name: elasticsearch={{elk_version}}
-   update_cache: yes
-
+    name: elasticsearch={{elk_version}}
+    update_cache: yes
 
 - name: Copy Elasticsearch
   template:
