@@ -20,4 +20,4 @@ elk_server:
   hosts: elk_server
 
 Monitoring:
-  hosts: monitoring
+  hosts: monitor
