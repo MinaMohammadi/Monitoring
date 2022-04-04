@@ -36,3 +36,5 @@ wp_db_host: "{{ gateway_private_ip_eth1 }}"
 # settings
 auto_up_disable: true
 core_update_level: true
+
+open_input_ports: [9110, 9093, 9100, 9113, 80, 443]

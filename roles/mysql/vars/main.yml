@@ -10,3 +10,5 @@ dbs:
   - wordpress
 
 backup_keep_days: 5
+
+open_input_ports: [9110, 9093, 9104, 9100]

@@ -13,3 +13,5 @@ elasticsearch_repo_base_url: "https://artifacts.elastic.co/packages/7.x/apt stab
 
 es_user: kibana_system
 es_pass: 123456
+
+open_input_ports: [9100, 5044, 9200, 9110, 5601, 9093]
