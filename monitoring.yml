@@ -3,7 +3,7 @@
   hosts: Monitoring
   become: True
   roles:
-   - apt-repose
+   - apt-repos
    - dns
    - monitoring-server
    - node-exporter
