@@ -2,11 +2,11 @@
 - name: Install Node-exporter zip file with wget
   get_url:
     url: "{{ node_exporter_download_link }}"
-    dest: /root
+    dest: /home/ubuntu
 
 - name: Extract Node-exporter Zip File
   unarchive:
-    src: /root/{{ node_exporter_file }}.tar.gz
+    src: /home/ubuntu/{{ node_exporter_file }}.tar.gz
     dest: /usr/local/bin
     remote_src: yes
 
