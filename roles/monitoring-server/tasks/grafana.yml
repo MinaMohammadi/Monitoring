@@ -20,6 +20,12 @@
     state: started
     enabled: yes
 
+- name: We create a dashboards directory in /var/lib/grafana 
+  file:
+    path: /var/lib/grafana/dashboards
+    state: directory
+    mode: 0755
+
 - name: Copy custom_exporter.json in /var/lib/grafana/dashboards
   copy:
     src: dashboards/custom_exporter.json
