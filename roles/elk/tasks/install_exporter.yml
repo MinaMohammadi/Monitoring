@@ -7,29 +7,13 @@
 - name: Extract elasticsearch-exporter Zip File
   unarchive:
     src: /root/{{ elk_exporter_file }}.tar.gz
-    dest: /root
+    dest: /usr/local/bin
     remote_src: yes
 
-- name: Check if the elk-Exporter folder exists
-  stat:
-    path: /usr/local/bin/elasticsearch
-  register: dest_folder
-
-- name: Rename elk-Exporter dir
-  shell: cp -r /root/{{ elk_exporter_file }} /usr/local/bin/elasticsearch
-  when: not dest_folder.stat.exists
-
 - name: build elasticsearch-exporter.service
-  copy:
-    src: service/elasticsearch-exporter.service
-    dest: /lib/systemd/system/
-
-- name: just force systemd to reread Monitoring configs
-  systemd:
-    daemon_reload: yes
-
-- name: enable elasticsearch-exporter service cron on remote server
-  systemd:
-    name: elasticsearch-exporter
-    state: started
-    enabled: yes
+  template:
+    src: service/elasticsearch-exporter.service.j2
+    dest: /lib/systemd/system/elasticsearch-exporter.service
+  notify:
+    - just force systemd to reread Monitoring configs
+    - enable elasticsearch-exporter service cron on remote server

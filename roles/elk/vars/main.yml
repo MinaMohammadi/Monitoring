@@ -11,6 +11,16 @@ elasticsearch_repo_gpg_key_url: "https://artifacts.elastic.co/GPG-KEY-elasticsea
 #Save the repository definition to /etc/apt/sources.list.d
 elasticsearch_repo_base_url: "https://artifacts.elastic.co/packages/7.x/apt stable main"
 
+# version
+elk_exporter_version: 1.3.0
+
+# file name
+elk_exporter_file: elasticsearch_exporter-{{ elk_exporter_version }}.linux-amd64
+
+# link
+elk_exporter_download_link:
+ "https://github.com/prometheus-community/elasticsearch_exporter/releases/download/v{{ elk_exporter_version }}/{{ elk_exporter_file }}.tar.gz"
+
 es_user: kibana_system
 es_pass: 123456
 

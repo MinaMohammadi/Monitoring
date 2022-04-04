@@ -11,3 +11,13 @@
   command: netplan apply
   async: 45
   poll: 0
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable mysql-exporter service cron on remote server
+  systemd:
+    name: mysql-exporter
+    state: started
+    enabled: yes
