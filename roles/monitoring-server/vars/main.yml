@@ -25,3 +25,7 @@ grafana_repo_url: https://packages.grafana.com/oss/deb stable main
 
 prometheus_url: https://prometheus.bukhara-chkh.ir
 grafana_url: https://grafana.bukhara-chkh.ir
+
+# Grafana 
+grafana_username: "admin"
+grafana_pass: "admin"

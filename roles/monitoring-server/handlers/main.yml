@@ -2,8 +2,8 @@
 - name: create dashboards in grafana
   community.grafana.grafana_dashboard:
     grafana_url: "{{ grafana_url }}"
-    grafana_user: "admin"
-    grafana_password: "admin"
+    grafana_user: "{{ grafana_username }}"
+    grafana_password: "{{ grafana_pass }}"
     org_id: "1"
     dashboard_id: "{{ item }}"
   loop:
@@ -15,8 +15,8 @@
 - name: create custom dashboards in grafana
   community.grafana.grafana_dashboard:
     grafana_url: "{{ grafana_url }}"
-    grafana_user: "admin"
-    grafana_password: "admin"
+    grafana_user: "{{ grafana_username }}"
+    grafana_password: "{{ grafana_pass }}"
     org_id: "1"
     state: present
     commit_message: create custom dashboard
