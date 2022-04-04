@@ -8,12 +8,12 @@ route:
 receivers:
   - name: 'email-notifications'
     email_configs:
-    - to: alirezaazizi1396622@gmail.com
-      from: alirezaazizi1396622@gmail.com
+    - to: "{{ email }}"
+      from: "{{ email }}"
       smarthost: smtp.gmail.com:587
-      auth_username: alirezaazizi1396622@gmail.com
-      auth_identity: alirezaazizi1396622@gmail.com
-      auth_password: fjbcmclagunlmcld
+      auth_username: "{{ email }}"
+      auth_identity: "{{ email }}"
+      auth_password: "{{ password }}"
 
 inhibit_rules:
   - source_match:

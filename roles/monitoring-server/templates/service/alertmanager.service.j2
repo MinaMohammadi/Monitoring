@@ -7,7 +7,7 @@ After=network-online.target
 Type=simple
 ExecStart=/usr/local/bin/{{ alertmanager_file }}/alertmanager \
   --config.file=/usr/local/bin/{{ alertmanager_file }}/alertmanager.yml \
-  --cluster.advertise-address="{{ alertmanager_hosts }}:9093"
+  --cluster.advertise-address="{{ monitor_private_ip }}:9093"
 
 [Install]
 WantedBy=multi-user.target

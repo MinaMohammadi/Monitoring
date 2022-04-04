@@ -8,9 +8,9 @@ network:
     ethernets:
         eth0:
             addresses:
-            - 192.168.0.2/24
-            gateway4: 192.168.0.232
+            - {{ monitor_private_ip }}/24
+            gateway4: {{ gateway_private_ip_eth1 }}
             match:
-                macaddress: fa:16:3e:61:bf:43
+                macaddress:  {{ ansible_eth1["macaddress"] }}
             mtu: 1442
             set-name: eth0

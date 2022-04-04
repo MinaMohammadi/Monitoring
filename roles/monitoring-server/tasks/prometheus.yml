@@ -23,13 +23,13 @@
     - alert_configs/exporter_alerts.yml
 
 - name: Copy the main file of Prometheus 
-  copy:
-    src: main-file/prometheus.yml
+  template:
+    src: main-file/prometheus.yml.j2
     dest: /usr/local/bin/{{ prometheus_file }}
 
 - name: build Prometheus.service
   template:
-    src: prometheus.service.j2
+    src: service/prometheus.service.j2
     dest: /lib/systemd/system/prometheus.service
 
 - name: just force systemd ro reload service

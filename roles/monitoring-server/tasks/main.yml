@@ -9,8 +9,8 @@
   import_tasks: grafana.yml
 
 - name: Copy netplan Config File
-  copy:
-    src: netplan/50-cloud-init.yaml
+  template:
+    src: netplan/50-cloud-init.yaml.j2
     dest: /etc/netplan/50-cloud-init.yaml
     owner: root
     group: root

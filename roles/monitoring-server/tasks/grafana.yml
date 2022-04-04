@@ -1,7 +1,7 @@
 ---
 - name: grafana add gpg key 
   apt_key:
-    url: https://packages.grafana.com/gpg.key
+    url: "{{ grafana_add_gpg_key }}"
     state: present
 
 - name: add repository Grafana
@@ -28,12 +28,12 @@
 - name: create datasource in grafana
   community.grafana.grafana_datasource:
     name: prometheus
-    grafana_url: https://grafana.bukhara-chkh.ir
-    grafana_user: "admin"
-    grafana_password: "admin"
+    grafana_url: {{ grafana_url }}
+    grafana_user: "{{ grafana_username }}"
+    grafana_password: "{{ grafana_pass }}"
     org_id: "1"
     ds_type: prometheus
-    ds_url: https://prometheus.bukhara-chkh.ir
+    ds_url: {{ prometheus_url }}
     access: proxy
     is_default: yes
   notify:

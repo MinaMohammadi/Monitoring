@@ -8,7 +8,7 @@ global:
 alerting:
   alertmanagers:
     - static_configs:
-        - targets: ["localhost:9093"]
+        - targets: ["{{ monitor_private_ip }}:9093"]
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -26,29 +26,30 @@ scrape_configs:
 
   - job_name: "prometheus"
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: ["{{ monitor_private_ip }}:9090"]
 
   - job_name: "grafana"
     static_configs:
-      - targets: ["192.168.0.2:3000"]
+      - targets: ["{{ monitor_private_ip }}:3000"]
 
   - job_name: "node"
     static_configs:
-      - targets: ["localhost:9100", "192.168.0.133:9100", "188.121.110.17:9100",
-                 "192.168.0.129:9100", "188.121.108.80:9100", "192.168.1.204:9100"]
+      - targets: ["{{ monitor_private_ip }}:9100", "{{ elk_private_ip }}:9100",
+      "{{ nginx_public_ip }}:9100", "{{ restapi_private_ip }}:9100", 
+      "{{ gateway_pub }}:9100", "{{ mysql_private_ip }}:9100"]
 
   - job_name: "mysqld"
     static_configs:
-      - targets: ["192.168.1.204:9104"]
+      - targets: ["{{ mysql_private_ip }}:9104"]
 
   - job_name: "elasticsearch"
     static_configs:
-      - targets: ["192.168.0.133:9114"]
+      - targets: ["{{ elk_private_ip }}:9114"]
         
   - job_name: "nginx-exporter"
     static_configs:
-      - targets: ["188.121.110.17:9113"]
+      - targets: ["{{ nginx_public_ip }}:9113"]
 
   - job_name: "exporter"
     static_configs:
-      - targets: ["192.168.0.2:9110"]
+      - targets: ["{{ monitor_private_ip }}:9110"]

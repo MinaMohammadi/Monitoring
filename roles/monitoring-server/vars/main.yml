@@ -1,5 +1,9 @@
 ---
 
+# information email alert
+email: alirezaazizi1396622@gmail.com
+password: fjbcmclagunlmcld
+
 # Version
 prometheus_version: 2.34.0
 alertmanager_version: 0.24.0-rc.0
@@ -16,9 +20,12 @@ prometheus_download_link:
 alertmanager_download_link: 
   "https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/{{ alertmanager_file }}.tar.gz"
 
-# hosts
-alertmanager_hosts: 192.168.0.2
-
-# Grafana 
+grafana_add_gpg_key: https://packages.grafana.com/gpg.key
 grafana_repo_url: https://packages.grafana.com/oss/deb stable main
 
+prometheus_url: https://prometheus.bukhara-chkh.ir
+grafana_url: https://grafana.bukhara-chkh.ir
+
+# Grafana 
+grafana_username: "admin"
+grafana_pass: "admin"
