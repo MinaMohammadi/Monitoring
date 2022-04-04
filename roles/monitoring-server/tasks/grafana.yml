@@ -28,12 +28,12 @@
 - name: create datasource in grafana
   community.grafana.grafana_datasource:
     name: prometheus
-    grafana_url: {{ grafana_url }}
+    grafana_url: "{{ grafana_url }}"
     grafana_user: "{{ grafana_username }}"
     grafana_password: "{{ grafana_pass }}"
     org_id: "1"
     ds_type: prometheus
-    ds_url: {{ prometheus_url }}
+    ds_url: "{{ prometheus_url }}"
     access: proxy
     is_default: yes
   notify:

@@ -1,7 +1,7 @@
 ---
 - name: create dashboards in grafana
   community.grafana.grafana_dashboard:
-    grafana_url: {{ grafana_url }}
+    grafana_url: "{{ grafana_url }}"
     grafana_user: "{{ grafana_username }}"
     grafana_password: "{{ grafana_pass }}"
     org_id: "1"
@@ -14,7 +14,7 @@
 
 - name: create custom dashboards in grafana
   community.grafana.grafana_dashboard:
-    grafana_url: {{ grafana_url }}
+    grafana_url: "{{ grafana_url }}"
     grafana_user: "{{ grafana_username }}"
     grafana_password: "{{ grafana_pass }}"
     org_id: "1"
