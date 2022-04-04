@@ -1,13 +1,4 @@
 ---
-- name: AlertManager Confings
-  import_tasks: alertmanager.yml
-
-- name: Prometheus Configs
-  import_tasks: prometheus.yml
-
-- name: Grafana Configs
-  import_tasks: grafana.yml
-
 - name: Copy netplan Config File
   template:
     src: netplan/50-cloud-init.yaml.j2
@@ -16,3 +7,15 @@
     group: root
     mode: 0744
   notify: apply netplan
+  
+- name: Force for apply netplan
+  meta: flush_handlers
+
+- name: AlertManager Confings
+  import_tasks: alertmanager.yml
+
+- name: Prometheus Configs
+  import_tasks: prometheus.yml
+
+- name: Grafana Configs
+  import_tasks: grafana.yml
