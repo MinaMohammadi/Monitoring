@@ -77,7 +77,7 @@
               "uid": "qQZwD0y7z"
             },
             "exemplar": true,
-            "expr": "uptime{job=\"exporter\", instance=\"192.168.0.2:9110\"}",
+            "expr": "uptime{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -162,7 +162,7 @@
               "uid": "qQZwD0y7z"
             },
             "exemplar": true,
-            "expr": "gateway_accessibility{job=\"exporter\", instance=\"192.168.0.2:9110\"}",
+            "expr": "gateway_accessibility{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -223,7 +223,7 @@
               "uid": "qQZwD0y7z"
             },
             "exemplar": true,
-            "expr": "internet_connection{job=\"exporter\", instance=\"192.168.0.2:9110\"}",
+            "expr": "internet_connection{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -284,7 +284,7 @@
               "uid": "qQZwD0y7z"
             },
             "exemplar": true,
-            "expr": "dns_check{job=\"exporter\", instance=\"192.168.0.2:9110\"}",
+            "expr": "dns_check{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -369,7 +369,7 @@
               "uid": "qQZwD0y7z"
             },
             "exemplar": true,
-            "expr": "nginx_availability{job=\"exporter\", instance=\"192.168.0.2:9110\"}",
+            "expr": "nginx_availability{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -454,7 +454,7 @@
               "uid": "qQZwD0y7z"
             },
             "exemplar": true,
-            "expr": "restapi_availability{job=\"exporter\", instance=\"192.168.0.2:9110\"}",
+            "expr": "restapi_availability{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -539,7 +539,7 @@
               "uid": "qQZwD0y7z"
             },
             "exemplar": true,
-            "expr": "process_start_time_seconds{job=\"exporter\", instance=\"192.168.0.2:9110\"}",
+            "expr": "process_start_time_seconds{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -625,7 +625,7 @@
               "uid": "qQZwD0y7z"
             },
             "exemplar": true,
-            "expr": "process_virtual_memory_bytes{job=\"exporter\", instance=\"192.168.0.2:9110\"}",
+            "expr": "process_virtual_memory_bytes{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
