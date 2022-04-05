@@ -1,14 +1,21 @@
 ---
+- name: Check if Prometheus directory exists
+  stat:
+    path: /usr/local/bin/{{ prometheus_file }}
+  register: prometheus_dir
+
 - name: Install Prometheus zip file with wget
   get_url:
     url: "{{ prometheus_download_link }}"
     dest: /home/ubuntu
+  when: not prometheus_dir.stat.exists
 
 - name: Extract Prometheus Zip File
   unarchive:
     src: /home/ubuntu/{{ prometheus_file }}.tar.gz
     dest: /usr/local/bin
     remote_src: yes
+  when: not prometheus_dir.stat.exists
 
 - name: Copy the alert rules to the remote server
   copy:

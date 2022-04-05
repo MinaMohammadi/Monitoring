@@ -1,14 +1,21 @@
 ---
+- name: Check if AlertManager directory exists
+  stat:
+    path: /usr/local/bin/{{ alertmanager_file }}
+  register: alertmanager_dir
+
 - name: Install AlertManager zip file with wget
   get_url:
     url: "{{ alertmanager_download_link }}"
     dest: /home/ubuntu
+  when: not alertmanager_dir.stat.exists
 
 - name: Extract AlertManager Zip File
   unarchive:
     src: /home/ubuntu/{{ alertmanager_file }}.tar.gz
     dest: /usr/local/bin
     remote_src: yes
+  when: not alertmanager_dir.stat.exists
 
 - name: Copy the main of alertmanager to the remte server
   template:
