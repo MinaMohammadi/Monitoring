@@ -21,10 +21,24 @@
     state: present
     commit_message: create custom dashboard
     overwrite: yes
-    path: /var/lib/grafana/dashboards/custom_exporter.json    
+    path: /var/lib/grafana/dashboards/custom_exporter.json
 
 - name: apply netplan
   command: netplan apply
   async: 45
   poll: 0
 
+- name: restart prometheus
+  service:
+    name: prometheus
+    state: restarted
+
+- name: restart alertmanager
+  service:
+    name: prometheus
+    state: restarted
+
+- name: restart grafana
+  service:
+    name: prometheus
+    state: restarted

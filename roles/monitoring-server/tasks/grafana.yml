@@ -1,5 +1,5 @@
 ---
-- name: grafana add gpg key 
+- name: grafana add gpg key
   apt_key:
     url: "{{ grafana_add_gpg_key }}"
     state: present
@@ -20,7 +20,7 @@
     state: started
     enabled: yes
 
-- name: We create a dashboards directory in /var/lib/grafana 
+- name: We create a dashboards directory in /var/lib/grafana
   file:
     path: /var/lib/grafana/dashboards
     state: directory
@@ -30,6 +30,7 @@
   copy:
     src: dashboards/custom_exporter.json
     dest: /var/lib/grafana/dashboards/custom_exporter.json
+  notify: restart grafana
 
 - name: create datasource in grafana
   community.grafana.grafana_datasource:
@@ -45,3 +46,4 @@
   notify:
     - create dashboards in grafana
     - create custom dashboards in grafana
+    - restart grafana

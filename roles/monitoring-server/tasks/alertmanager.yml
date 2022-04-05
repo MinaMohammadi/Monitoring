@@ -21,6 +21,7 @@
   template:
     src: main-file/alertmanager.yml.j2
     dest: /usr/local/bin/{{ alertmanager_file }}/alertmanager.yml
+  notify: restart alertmanager
 
 - name: build alertmanager.service
   template:
