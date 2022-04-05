@@ -22,10 +22,10 @@
     - alert_configs/prometheus_alerts.yml
     - alert_configs/exporter_alerts.yml
 
-- name: Copy the main file of Prometheus 
+- name: Copy the main file of Prometheus
   template:
     src: main-file/prometheus.yml.j2
-    dest: /usr/local/bin/{{ prometheus_file }}
+    dest: /usr/local/bin/{{ prometheus_file }}/prometheus.yml
 
 - name: build Prometheus.service
   template:
