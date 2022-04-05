@@ -11,4 +11,3 @@ gateway_private_ip_eth2: 192.168.1.155
 
 backup_path: /opt/db-backup
 nginx_public_ip: 188.121.111.236
-gateway_pub: 188.121.110.154

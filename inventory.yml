@@ -8,16 +8,16 @@ gateway_pub:
   hosts: 188.121.110.154
 
 restapi:
-  hosts: restapi
+  hosts: 01-restapi
 
 webserver:
-  hosts: webserver
+  hosts: 01-webserver
 
 dbserver:
-  hosts: dbserver
+  hosts: 01-dbserver
 
 elk_server:
-  hosts: elk_server
+  hosts: 01-elk_server
 
 Monitoring:
-  hosts: monitor
+  hosts: 01-monitor
