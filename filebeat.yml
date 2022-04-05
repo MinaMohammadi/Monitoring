@@ -1,5 +1,9 @@
 ---
-- hosts: filebeat_servers
+- hosts:
+    - restapi
+    - dbserver
+    - webserver
+
   become: True
   roles:
     - apt-repos

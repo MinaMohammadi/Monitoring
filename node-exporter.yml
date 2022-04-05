@@ -5,7 +5,8 @@
     - webserver
     - elk_server
     - gateway
+    - Monitoring
 
   become: True
   roles:
-    - exporter
+    - node-exporter
