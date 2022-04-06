@@ -3,3 +3,6 @@
   become: True
   roles:
     - gateway
+    - node-exporter
+    - exporter
+    - ssh-hardening

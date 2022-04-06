@@ -7,7 +7,7 @@
     group: root
     mode: 0744
   notify: apply netplan
-  
+
 - name: Force for apply netplan
   meta: flush_handlers
 
@@ -19,3 +19,6 @@
 
 - name: Grafana Configs
   import_tasks: grafana.yml
+
+- name: Iptables hardening
+  import_tasks: iptables.yml
