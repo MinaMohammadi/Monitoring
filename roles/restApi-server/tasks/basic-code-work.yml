@@ -15,7 +15,7 @@
 - name: Copy config file
   template:
     src: config.json.j2
-    dest: ~/Phonebook/conf/config.json
+    dest: ~/Phonebook/REST-API/conf/config.json
 
 - name: Install specified python requirements
   pip:
