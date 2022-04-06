@@ -1,6 +1,6 @@
 ansible_ssh_user: ubuntu
 
-mysql_private_ip: 192.168.1.204
+mysql_private_ip: 192.168.1.31
 nginx_private_ip: 192.168.0.120
 restapi_private_ip: 192.168.0.73
 monitor_private_ip: 192.168.0.122
