@@ -4,4 +4,7 @@
   become: True
   roles:
     - restApi-server
+    - node-exporter
+    - exporter
+    - filebeat-agent
     - ssh-hardening
