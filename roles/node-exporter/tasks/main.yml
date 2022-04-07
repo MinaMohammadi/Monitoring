@@ -5,8 +5,8 @@
   register: node_exporter_dir
 
 - name: Install Node-exporter zip file with wget
-  get_url:
-    url: "{{ node_exporter_download_link }}"
+  copy:
+    src: "{{ node_exporter_file }}.tar.gz"
     dest: /home/ubuntu
   when: not node_exporter_dir.stat.exists
 
