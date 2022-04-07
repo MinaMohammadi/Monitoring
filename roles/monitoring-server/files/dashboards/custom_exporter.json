@@ -21,7 +21,8 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 5,
+    "id": 9,
+    "iteration": 1649320859900,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -49,7 +50,7 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
+          "h": 8,
           "w": 12,
           "x": 0,
           "y": 0
@@ -74,7 +75,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "qQZwD0y7z"
+              "uid": "P3BXDR8nk"
             },
             "exemplar": true,
             "expr": "uptime{job=\"exporter\", instance=\"$instance\"}",
@@ -90,35 +91,7 @@
         "fieldConfig": {
           "defaults": {
             "color": {
-              "mode": "palette-classic"
-            },
-            "custom": {
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "drawStyle": "points",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "lineInterpolation": "linear",
-              "lineWidth": 1,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
+              "mode": "thresholds"
             },
             "mappings": [],
             "thresholds": {
@@ -138,69 +111,12 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 9,
+          "h": 8,
           "w": 12,
           "x": 12,
           "y": 0
         },
-        "id": 10,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom"
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "qQZwD0y7z"
-            },
-            "exemplar": true,
-            "expr": "gateway_accessibility{job=\"exporter\", instance=\"$instance\"}",
-            "interval": "",
-            "legendFormat": "",
-            "refId": "A"
-          }
-        ],
-        "title": "Gateway Accessibility",
-        "type": "timeseries"
-      },
-      {
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 6,
-          "w": 12,
-          "x": 0,
-          "y": 9
-        },
-        "id": 6,
+        "id": 12,
         "options": {
           "colorMode": "value",
           "graphMode": "area",
@@ -220,68 +136,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "qQZwD0y7z"
-            },
-            "exemplar": true,
-            "expr": "internet_connection{job=\"exporter\", instance=\"$instance\"}",
-            "interval": "",
-            "legendFormat": "",
-            "refId": "A"
-          }
-        ],
-        "title": "Internet connection",
-        "type": "stat"
-      },
-      {
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 6,
-          "w": 12,
-          "x": 12,
-          "y": 9
-        },
-        "id": 4,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "auto"
-        },
-        "pluginVersion": "8.4.4",
-        "targets": [
-          {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "qQZwD0y7z"
+              "uid": "P3BXDR8nk"
             },
             "exemplar": true,
             "expr": "dns_check{job=\"exporter\", instance=\"$instance\"}",
@@ -290,7 +145,7 @@
             "refId": "A"
           }
         ],
-        "title": "DNS Check",
+        "title": "dns check",
         "type": "stat"
       },
       {
@@ -348,13 +203,13 @@
           "h": 8,
           "w": 12,
           "x": 0,
-          "y": 15
+          "y": 8
         },
-        "id": 8,
+        "id": 10,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
+            "displayMode": "hidden",
             "placement": "bottom"
           },
           "tooltip": {
@@ -366,16 +221,16 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "qQZwD0y7z"
+              "uid": "P3BXDR8nk"
             },
             "exemplar": true,
-            "expr": "nginx_availability{job=\"exporter\", instance=\"$instance\"}",
+            "expr": "internet_connection{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
           }
         ],
-        "title": "Nginx Availability",
+        "title": "internet connection",
         "type": "timeseries"
       },
       {
@@ -433,13 +288,13 @@
           "h": 8,
           "w": 12,
           "x": 12,
-          "y": 15
+          "y": 8
         },
-        "id": 12,
+        "id": 4,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
+            "displayMode": "hidden",
             "placement": "bottom"
           },
           "tooltip": {
@@ -447,11 +302,12 @@
             "sort": "none"
           }
         },
+        "pluginVersion": "8.4.4",
         "targets": [
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "qQZwD0y7z"
+              "uid": "P3BXDR8nk"
             },
             "exemplar": true,
             "expr": "restapi_availability{job=\"exporter\", instance=\"$instance\"}",
@@ -460,7 +316,7 @@
             "refId": "A"
           }
         ],
-        "title": "Restapi Availability",
+        "title": "restapi availability",
         "type": "timeseries"
       },
       {
@@ -473,7 +329,7 @@
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
-              "drawStyle": "bars",
+              "drawStyle": "points",
               "fillOpacity": 0,
               "gradientMode": "none",
               "hideFrom": {
@@ -518,13 +374,13 @@
           "h": 8,
           "w": 12,
           "x": 0,
-          "y": 23
+          "y": 16
         },
-        "id": 16,
+        "id": 8,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
+            "displayMode": "hidden",
             "placement": "bottom"
           },
           "tooltip": {
@@ -536,16 +392,16 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "qQZwD0y7z"
+              "uid": "P3BXDR8nk"
             },
             "exemplar": true,
-            "expr": "process_start_time_seconds{job=\"exporter\", instance=\"$instance\"}",
+            "expr": "nginx_availability{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
           }
         ],
-        "title": "Process Start Time Seconds",
+        "title": "nginx availability",
         "type": "timeseries"
       },
       {
@@ -558,7 +414,7 @@
               "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
-              "drawStyle": "bars",
+              "drawStyle": "points",
               "fillOpacity": 0,
               "gradientMode": "none",
               "hideFrom": {
@@ -603,13 +459,13 @@
           "h": 8,
           "w": 12,
           "x": 12,
-          "y": 23
+          "y": 16
         },
-        "id": 14,
+        "id": 6,
         "options": {
           "legend": {
             "calcs": [],
-            "displayMode": "list",
+            "displayMode": "hidden",
             "placement": "bottom"
           },
           "tooltip": {
@@ -617,30 +473,68 @@
             "sort": "none"
           }
         },
-        "pluginVersion": "8.4.4",
         "targets": [
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "qQZwD0y7z"
+              "uid": "P3BXDR8nk"
             },
             "exemplar": true,
-            "expr": "process_virtual_memory_bytes{job=\"exporter\", instance=\"$instance\"}",
+            "expr": "gateway_accessibility{job=\"exporter\", instance=\"$instance\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
           }
         ],
-        "title": "Process Virtual Memory Bytes",
+        "title": "gateway accessibility",
         "type": "timeseries"
       }
     ],
-    "refresh": "",
     "schemaVersion": 35,
     "style": "dark",
     "tags": [],
     "templating": {
-      "list": []
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "prometheus",
+            "value": "prometheus"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "datasource",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "192.168.0.109:9110",
+            "value": "192.168.0.109:9110"
+          },
+          "definition": "up{job=\"exporter\"}",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "instance",
+          "options": [],
+          "query": {
+            "query": "up{job=\"exporter\"}",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": ".*instance=\"(.*?)\".*",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
     },
     "time": {
       "from": "now-6h",
@@ -649,7 +543,7 @@
     "timepicker": {},
     "timezone": "",
     "title": "custom exporter",
-    "uid": "HiEdDjsnz",
-    "version": 11,
+    "uid": "Cgh4KM87z",
+    "version": 12,
     "weekStart": ""
   }
