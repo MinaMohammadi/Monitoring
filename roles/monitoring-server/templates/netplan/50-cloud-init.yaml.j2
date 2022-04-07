@@ -13,4 +13,8 @@ network:
             match:
                 macaddress:  {{ ansible_eth0["macaddress"] }}
             mtu: 1442
+            nameservers:
+                addresses:
+                - 8.8.8.8
+                - 1.1.1.1
             set-name: eth0
