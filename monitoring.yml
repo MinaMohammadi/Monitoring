@@ -1,0 +1,11 @@
+---
+- name: Configure Monitoring with Ansible
+  hosts: Monitoring
+  become: True
+  roles:
+    - apt-repos
+    - dns
+    - node-exporter
+    - exporter
+    - monitoring-server
+    - ssh-hardening

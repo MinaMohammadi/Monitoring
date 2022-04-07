@@ -3,3 +3,7 @@
   become: True
   roles:
     - nginx
+    - node-exporter
+    - exporter
+    - filebeat-agent
+    - ssh-hardening

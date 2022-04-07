@@ -1,7 +1,10 @@
 ---
 - name: Configure Rest Api with Ansible
-  hosts: RestApi
+  hosts: restapi
   become: True
   roles:
-   - restApi-server
-   - ssh-hardening
+    - restApi-server
+    - node-exporter
+    - exporter
+    - filebeat-agent
+    - ssh-hardening

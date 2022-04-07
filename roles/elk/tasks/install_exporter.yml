@@ -1,0 +1,19 @@
+---
+- name: Install elasticsearch-exporter zip file with wget
+  get_url:
+    url: "{{ elk_exporter_download_link }}"
+    dest: /root
+
+- name: Extract elasticsearch-exporter Zip File
+  unarchive:
+    src: /root/{{ elk_exporter_file }}.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: build elasticsearch-exporter.service
+  template:
+    src: service/elasticsearch-exporter.service.j2
+    dest: /lib/systemd/system/elasticsearch-exporter.service
+  notify:
+    - just force systemd to reread Monitoring configs
+    - enable elasticsearch-exporter service cron on remote server

@@ -1,18 +1,24 @@
 ---
-- name: Mysql Install and Config
-  import_tasks: database.yml
-
-- name: Iptables Hardening
-  import_tasks: backup.yml
-
-- name: Iptables Hardening
-  import_tasks: iptables.yml
-
 - name: Copy netplan Config File
-  copy:
-    src: netplan/50-cloud-init.yaml
+  template:
+    src: netplan/50-cloud-init.yaml.j2
     dest: /etc/netplan/50-cloud-init.yaml
     owner: root
     group: root
     mode: 0744
   notify: apply netplan
+
+- name: Force for apply netplan
+  meta: flush_handlers
+
+- name: Mysql Install and Config
+  import_tasks: database.yml
+
+- name: Backup configuration
+  import_tasks: backup.yml
+
+- name: Install exporter
+  import_tasks: install_exporter.yml
+
+- name: Iptables Hardening
+  import_tasks: iptables.yml

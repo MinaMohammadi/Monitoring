@@ -1,5 +1,5 @@
 ---
-backup_host: 192.168.30.4
+backup_host: "{{ gateway_private_ip_eth2 }}"
 backup_user: root
 
 db_users:
@@ -8,3 +8,18 @@ db_users:
 
 dbs:
   - wordpress
+  - phonebook
+
+# version
+mysql_exporter_version: 0.14.0
+
+# file name
+mysql_exporter_file: "mysqld_exporter-0.14.0.linux-amd64"
+
+# links
+mysql_exporter_download_link:
+  "https://github.com/prometheus/mysqld_exporter/releases/download/v{{ mysql_exporter_version }}/{{ mysql_exporter_file  }}.tar.gz"
+  
+backup_keep_days: 5
+
+open_input_ports: [9110, 9093, 9104, 9100]

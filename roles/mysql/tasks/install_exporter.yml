@@ -1,0 +1,25 @@
+
+---
+- name: Install Mysql-exporter zip file with wget
+  get_url:
+    url: "{{ mysql_exporter_download_link }}"
+    dest: /root
+
+- name: Extract Mysql-exporter Zip File
+  unarchive:
+    src: /root/{{ mysql_exporter_file }}.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: write username and password in my.conf
+  copy:
+    src: myCnf/.my.cnf
+    dest: /root
+
+- name: build mysql-exporter.service
+  template:
+    src: mysql-exporter.service.j2
+    dest: /lib/systemd/system/mysql-exporter.service
+  notify:
+    - just force systemd to reread Monitoring configs
+    - enable mysql-exporter service cron on remote server

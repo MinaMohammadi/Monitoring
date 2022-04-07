@@ -4,10 +4,16 @@ cexporter_entrypoint: "{{ cexporter_path }}/collector.py"
 cexporter_git_repo: https://github.com/alrzazz/Exporter.git
 
 eviroment_vars:
-  - { name: REST_API_ADD_URL, value: https://api.bukhara-chkh.ir/user/insert }
-  - { name: REST_API_DEL_URL, value: https://api.bukhara-chkh.ir/user/delete }
+  - {
+      name: REST_API_ADD_URL,
+      value: https://api.bukhara-chkh.ir/phonebook/user/insert,
+    }
+  - {
+      name: REST_API_DEL_URL,
+      value: https://api.bukhara-chkh.ir/phonebook/user/delete,
+    }
   - { name: NGINX_ADDR, value: http://monitor.bukhara-chkh.ir }
   - { name: DNS_ADDR, value: api.bukhara-chkh.ir }
-  - { name: DNS_IP, value: 188.121.110.17 }
+  - { name: DNS_IP, value: "{{ nginx_public_ip }}" }
   - { name: EXTERNAL_ADDR, value: http://google.com }
-  - { name: GATEWAY_IP, value: 192.168.0.232 }
+  - { name: GATEWAY_IP, value: "{{ gateway_private_ip_eth1 }}" }

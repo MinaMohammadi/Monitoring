@@ -1,0 +1,10 @@
+---
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable node-exporter service cron on remote server
+  systemd:
+    name: node-exporter
+    state: started
+    enabled: yes

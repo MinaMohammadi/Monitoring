@@ -2,7 +2,7 @@
 server.port: 5601
 
 # To allow connections from remote users, set this parameter to a non-loopback address.
-server.host: "{{ server_ip_addr }}"
+server.host: "0.0.0.0"
 
 # The Kibana server's name.  This is used for display purposes.
 server.name: "my-kibana"
@@ -19,8 +19,8 @@ kibana.defaultAppId: "home"
 
 # index at startup. Your Kibana users still need to authenticate with Elasticsearch, which
 # is proxied through the Kibana server.
-elasticsearch.username: "kibana_system"
-elasticsearch.password: "123456"
+elasticsearch.username: "{{ es_user }}"
+elasticsearch.password: "{{ es_pass }}"
 
 # Time in milliseconds to wait for responses from the back end or Elasticsearch. This value
 # must be a positive integer.
