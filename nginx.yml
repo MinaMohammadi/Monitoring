@@ -2,6 +2,7 @@
 - hosts: webserver
   become: True
   roles:
+    - dns
     - nginx
     - node-exporter
     - exporter

@@ -3,6 +3,7 @@
   hosts: restapi
   become: True
   roles:
+    - dns
     - restApi-server
     - node-exporter
     - exporter

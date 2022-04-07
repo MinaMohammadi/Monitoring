@@ -2,8 +2,18 @@
 - hosts: dbserver
   become: True
   roles:
+    - dns
     - mysql
     - exporter
     - node-exporter
     - filebeat-agent
     - ssh-hardening
+
+- hosts: gateway
+  become: True
+  tasks:
+    - name: Add mysql public key to authorized_keys
+      blockinfile:
+        path: /root/.ssh/authorized_keys
+        block: "{{ lookup('file', 'id_rsa.pub') }}"
+        create: yes

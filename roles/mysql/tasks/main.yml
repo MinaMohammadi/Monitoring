@@ -22,3 +22,13 @@
 
 - name: Iptables Hardening
   import_tasks: iptables.yml
+
+- name: Generate ssh keys
+  openssh_keypair:
+    path: ~/.ssh/id_rsa
+
+- name: Fetch the keyfile from one server to another
+  fetch:
+    src: "~/.ssh/id_rsa.pub"
+    dest: "id_rsa.pub"
+    flat: yes
