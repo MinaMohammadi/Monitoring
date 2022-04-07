@@ -1,0 +1,23 @@
+---
+- name: Add Elasticsearch apt key
+  apt_key:
+   url: "{{elasticsearch_repo_gpg_key_url}}"
+   state: present
+
+- name: Adding Elasticsearch repo
+  apt_repository:
+   repo: "deb {{elasticsearch_repo_base_url}}"
+   state: present
+
+- name: Install Filebeat
+  apt:
+   name: filebeat={{elk_version}}
+   update_cache: yes
+
+- name: Copy filebeat.yml
+  template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    mode: 0744
+  notify: restart filebeat

@@ -1,0 +1,10 @@
+---
+- hosts: webserver
+  become: True
+  roles:
+    - dns
+    - nginx
+    - node-exporter
+    - exporter
+    - filebeat-agent
+    - ssh-hardening

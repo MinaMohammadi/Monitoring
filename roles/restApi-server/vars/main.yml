@@ -1,0 +1,6 @@
+open_input_ports: [18080, 22, 9100, 9110, 9093]
+
+db_host: "{{ mysql_private_ip }}"
+db_user: arvan
+db_password: arvan
+db_name: phonebook

@@ -1,0 +1,49 @@
+---
+# nginx
+root_domain_name: "bukhara-chkh.ir"
+nginx_conf_files:
+  - "api.conf"
+  - "wordpress.conf"
+  - "monitor.conf"
+  - "default.conf"
+  - "root.conf"
+
+root_dn: "{{ root_domain_name }}"
+api_dn: "api.{{ root_domain_name }}"
+monitor_dn: "monitor.{{ root_domain_name }}"
+prometheus_dn: "prometheus.{{ root_domain_name }}"
+grafana_dn: "grafana.{{ root_domain_name }}"
+kibana_dn: "kibana.{{ root_domain_name }}"
+wordpress_dn: "wordpress.{{ root_domain_name }}"
+
+# certificate paths
+letsencrypt_dir: "/etc/letsencrypt/live/{{ root_domain_name }}"
+wildcard_cert_path: "{{ letsencrypt_dir }}/cert.pem"
+wildcard_key_path: "{{ letsencrypt_dir }}/privkey.pem"
+
+pb_rest_api_addr: "http://{{ restapi_private_ip }}:18080/"
+kibana_addr: "http://{{ elk_private_ip }}:5601/"
+grafana_addr: "http://{{ monitor_private_ip }}:3000/"
+prometheus_addr: "http://{{ monitor_private_ip }}:9090/"
+
+# wordpress
+# wordpress database settings
+wp_db_name: wordpress
+wp_db_user: wordpress
+wp_db_password: wordpress
+wp_db_host: "{{ gateway_private_ip_eth1 }}"
+
+# settings
+auto_up_disable: true
+core_update_level: true
+
+# version
+nginx_exporter_version: 0.10.0
+
+# file name
+nginx_exporter_file: "nginx-prometheus-exporter_{{ nginx_exporter_version }}_linux_amd64"
+
+# links
+nginx_exporter_download_link: "https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v{{ nginx_exporter_version }}/{{ nginx_exporter_file }}.tar.gz"
+
+open_input_ports: [9110, 9093, 9100, 9113, 80, 443, 8080]

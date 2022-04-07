@@ -1,0 +1,12 @@
+*filter
+
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+{% for item in open_input_ports %}
+-A INPUT -p tcp -m tcp --dport {{ item }} -j ACCEPT
+{% endfor %}
+-A INPUT -p udp --dport 53 -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -j DROP
+
+COMMIT

@@ -1,0 +1,28 @@
+---
+- name: Create cexporter service
+  template:
+    src: cexporter.service.j2
+    dest: /lib/systemd/system/cexporter.service
+  notify:
+    - daemon reload
+    - start cexporter
+
+- name: Install required packages
+  apt:
+    name:
+      - python3
+      - python3-pip
+    update_cache: yes
+
+- name: Clone cexporter git repo
+  git:
+    repo: "{{ cexporter_git_repo }}"
+    dest: "{{ cexporter_path }}"
+    clone: yes
+    update: yes
+  notify: restart cexporter
+
+- name: Install pip packages
+  pip:
+    requirements: "{{ cexporter_path }}/requirements.txt"
+  notify: restart cexporter

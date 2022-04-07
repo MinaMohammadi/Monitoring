@@ -1,0 +1,37 @@
+---
+- name: Install the package "pip"
+  apt:
+    name: pip
+    update_cache: yes
+
+- name: Clone a GitHub Repository
+  git:
+    repo: https://github.com/Ygn-Amirjani/Phonebook.git
+    dest: ~/Phonebook
+    clone: yes
+    update: yes
+    force: yes
+
+- name: Copy config file
+  template:
+    src: config.json.j2
+    dest: ~/Phonebook/REST-API/conf/config.json
+
+- name: Install specified python requirements
+  pip:
+    requirements: ~/Phonebook/REST-API/requirements.txt
+
+- name: We create a directory to register logs
+  file:
+    path: /var/log/restapi
+    state: directory
+    mode: 0777
+
+- name: We create a file to register logs
+  copy:
+    content: ""
+    dest: /var/log/restapi/app.log
+    force: no
+    group: root
+    owner: root
+    mode: 0777

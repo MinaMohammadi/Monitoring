@@ -1,0 +1,74 @@
+---
+- name: Install Requirements
+  apt:
+    name:
+      - resolvconf
+      - s3cmd
+    update_cache: yes
+
+- name: Add DNS Addresses
+  blockinfile:
+    path: /etc/resolvconf/resolv.conf.d/head
+    block: |
+      nameserver 1.1.1.1
+      nameserver 8.8.8.8
+      nameserver 3.3.3.3
+      nameserver 4.2.2.4
+  notify: restart resolvconf
+
+- name: Set ip_forward
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    sysctl_set: yes
+    reload: yes
+
+- name: Copy s3cmd config file
+  template:
+    src: s3cmd/.s3cfg.j2
+    dest: /root/.s3cfg
+    owner: root
+    group: root
+    mode: 0744
+
+- name: Cron Job for Upload backup files to Object Storage
+  cron:
+    name: upload backup files
+    job: "s3cmd -c /root/.s3cfg sync /opt/db-backup/ --preserve --delete-removed s3://{{ s3_sandoghche }}"
+    special_time: daily
+    state: present
+
+- name: Copy backup controll script
+  template:
+    src: backup/script.sh
+    dest: /opt/script.sh
+    owner: root
+    group: root
+    mode: 0744
+
+- name: Cron job for backup control script
+  cron:
+    name: control backup files
+    job: "/opt/script.sh"
+    special_time: hourly
+    state: present
+
+- name: Iptables Hardening
+  import_tasks: iptables.yml
+
+- name: Copy netplan Config File
+  template:
+    src: netplan/50-cloud-init.yaml.j2
+    dest: /etc/netplan/50-cloud-init.yaml
+    owner: root
+    group: root
+    mode: 0744
+  notify: apply netplan
+
+- name: Copy hosts file
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644

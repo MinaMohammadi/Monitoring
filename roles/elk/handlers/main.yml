@@ -1,0 +1,33 @@
+---
+- name: restart es
+  service:
+    name: elasticsearch
+    state: restarted
+    enabled: yes
+
+- name: restart kibana
+  service:
+    name: kibana
+    state: restarted
+    enabled: yes
+
+- name: restart logstash
+  service:
+    name: logstash
+    state: restarted
+    enabled: yes
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable elasticsearch-exporter service cron on remote server
+  systemd:
+    name: elasticsearch-exporter
+    state: started
+    enabled: yes
+    
+- name: apply netplan
+  command: netplan apply
+  async: 45
+  poll: 0

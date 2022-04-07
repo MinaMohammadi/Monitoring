@@ -1,0 +1,31 @@
+---
+- name: Install Nginx-exporter zip file with wget
+  get_url:
+    url: "{{ nginx_exporter_download_link }}"
+    dest: /root
+
+- name: We create a directory to /usr/local/bin/nginxExporter
+  file:
+    path: /usr/local/bin/nginxExporter
+    state: directory
+    mode: 0755
+
+- name: Extract Nginx-exporter Zip File
+  unarchive:
+    src: /root/{{ nginx_exporter_file }}.tar.gz
+    dest: /usr/local/bin/nginxExporter
+    remote_src: yes
+
+- name: copy nginx exporter config file to site-enable directory
+  template:
+    src: nginx-config/nginx_exporter.conf
+    dest: /etc/nginx/sites-enabled/
+  notify: reload nginx
+
+- name: build nginx-exporter.service
+  copy:
+    src: service/nginx-exporter.service
+    dest: /lib/systemd/system/
+  notify:
+    - just force systemd to reread Monitoring configs
+    - enable nginx-exporter service cron on remote server

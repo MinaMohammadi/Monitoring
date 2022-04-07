@@ -1,0 +1,49 @@
+---
+- name: grafana add gpg key
+  apt_key:
+    url: "{{ grafana_add_gpg_key }}"
+    state: present
+
+- name: add repository Grafana
+  apt_repository:
+    repo: "deb {{ grafana_repo_url }}"
+    state: present
+
+- name: Install Grafana
+  apt:
+    name: grafana={{ grafana_version }}
+    update_cache: yes
+
+- name: enable grafana service cron on remote server
+  systemd:
+    name: grafana-server
+    state: started
+    enabled: yes
+
+- name: We create a dashboards directory in /var/lib/grafana
+  file:
+    path: /var/lib/grafana/dashboards
+    state: directory
+    mode: 0755
+
+- name: Copy custom_exporter.json in /var/lib/grafana/dashboards
+  copy:
+    src: dashboards/custom_exporter.json
+    dest: /var/lib/grafana/dashboards/custom_exporter.json
+  notify: restart grafana
+
+- name: create datasource in grafana
+  community.grafana.grafana_datasource:
+    name: prometheus
+    grafana_url: "{{ grafana_url }}"
+    grafana_user: "{{ grafana_username }}"
+    grafana_password: "{{ grafana_pass }}"
+    org_id: "1"
+    ds_type: prometheus
+    ds_url: "{{ prometheus_url }}"
+    access: proxy
+    is_default: yes
+  notify:
+    - create dashboards in grafana
+    - create custom dashboards in grafana
+    - restart grafana

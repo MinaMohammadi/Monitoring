@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/{{ prometheus_file }}/prometheus \
+    --config.file=/usr/local/bin/{{ prometheus_file }}/prometheus.yml
+
+[Install]
+WantedBy=multi-user.target

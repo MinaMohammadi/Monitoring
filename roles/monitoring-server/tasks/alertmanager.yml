@@ -1,0 +1,39 @@
+---
+- name: Check if AlertManager directory exists
+  stat:
+    path: /usr/local/bin/{{ alertmanager_file }}
+  register: alertmanager_dir
+
+- name: Install AlertManager zip file with wget
+  get_url:
+    url: "{{ alertmanager_download_link }}"
+    dest: /home/ubuntu
+  when: not alertmanager_dir.stat.exists
+
+- name: Extract AlertManager Zip File
+  unarchive:
+    src: /home/ubuntu/{{ alertmanager_file }}.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+  when: not alertmanager_dir.stat.exists
+
+- name: Copy the main of alertmanager to the remte server
+  template:
+    src: main-file/alertmanager.yml.j2
+    dest: /usr/local/bin/{{ alertmanager_file }}/alertmanager.yml
+  notify: restart alertmanager
+
+- name: build alertmanager.service
+  template:
+    src: service/alertmanager.service.j2
+    dest: /lib/systemd/system/alertmanager.service
+
+- name: just force systemd to reread Monitoring configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable AlertManager service cron on remote server
+  systemd:
+    name: alertmanager
+    state: started
+    enabled: yes
