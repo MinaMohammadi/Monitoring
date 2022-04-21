@@ -14,7 +14,7 @@ Here we tried to correct our previous bugs and provide you with a cleaner projec
 
 ## Raise the project
 
-To start the project, you must first install X on your system, so :
+To start the project, you must first install ansible on your system, so :
 
 ```
 sudo apt install -y ansible
