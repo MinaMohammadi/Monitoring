@@ -32,9 +32,9 @@ Here is the last step, let's run the following command on the gateway together .
 ansible-playbook serviers/site.yml
 ```
 
-* The point to note is that we use ansible-vault for our passwords. so change them with what you want :)
-
 and over, You can use all the servers and enjoy .
+
+* The point to note is that we use ansible-vault for our passwords. so change them with what you want :)
 
 ## Concepts we learned in this project 
 
