@@ -2,7 +2,7 @@
 
 In this project, we have tried to automate [Project Phonebook](https://github.com/Ygn-Amirjani/Phonebook) with the ansible. We have also added two [Monitoring](https://github.com/MinaMohammadi/Monitoring/tree/master/roles/monitoring-server) and [ELK](https://github.com/MinaMohammadi/Monitoring/tree/master/roles/elk) servers, the description of which you can read from the relevant links .
 
-![Project outline](ProjectImage/photo5983174453519038351.jpg)
+![Project outline](ProjectImage/photo5994622555702541044.jpg)
 
 as we know You make your request through your laptop to address Nginx server at port 18080 . So Nginx reverse proxy your request to the Rest server . 
 
